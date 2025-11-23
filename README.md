@@ -118,12 +118,10 @@ Hệ thống được thiết kế cho 4 vai trò chính:
 - Thiết kế CSDL: dbdiagram.io
 - Quản lý mã nguồn: GitHub
 
-**Công nghệ thực tế:**
-- **Backend**: Express.js (Node.js)
-- **Frontend**: Vue.js 3 với Vite, Pinia, Tailwind CSS
-- **Database**: PostgreSQL (Neon Serverless)
-- **ORM**: Drizzle ORM
-- **Language**: 100% JavaScript (ES6+)
+**Công nghệ:**
+- **Backend**: PHP/Laravel
+- **Frontend**: VueJS kết hợp với Axios gọi API
+- **Database**: MySQL
 
 ---
 
@@ -203,80 +201,132 @@ Mô hình dữ liệu quan hệ (ERD) được thiết kế theo chuẩn 3NF. C�
 ### 3.2. Cấu Trúc Thư Mục Dự Án
 
 ```
-├── client/                    # Vue.js frontend
+├── app/                       # PHP/Laravel backend
+│   ├── Http/Controllers/      # Controllers (xử lý logic)
+│   ├── Models/                # Models (tương tác với DB)
+│   └── Requests/              # Form requests (xác thực)
+├── database/
+│   ├── migrations/            # Tệp di chuyển cơ sở dữ liệu
+│   └── seeders/               # Dữ liệu mẫu
+├── resources/
+│   └── views/                 # Blade templates (nếu cần)
+├── routes/
+│   └── api.php                # Định nghĩa API routes
+├── frontend/                  # Vue.js frontend
 │   ├── src/
-│   │   ├── components/        # Các component tái sử dụng
+│   │   ├── components/        # Các component Vue tái sử dụng
 │   │   ├── views/             # Các trang chính
 │   │   ├── router/            # Cấu hình Vue Router
-│   │   ├── services/          # API service layer
-│   │   ├── stores/            # Pinia stores
-│   │   ├── types/             # Định nghĩa kiểu dữ liệu (JSDoc)
+│   │   ├── services/          # API service (Axios)
 │   │   └── main.js            # Entry point
-├── server/                    # Express.js backend
-│   ├── index.js               # Tệp chính
-│   ├── routes.js              # Định nghĩa tuyến API
-│   ├── storage.js             # Cấu hình cơ sở dữ liệu
-│   └── vite.js                # Tích hợp Vite dev server
-├── shared/                    # Mã dùng chung
-│   └── schema.js              # Database schema (Drizzle ORM)
-├── migrations/                # Tệp di chuyển cơ sở dữ liệu
+│   ├── index.html
+│   └── package.json
 ├── figma-exports/             # Tệp HTML/CSS tĩnh cho thiết kế
-└── package.json               # Phụ thuộc dự án
+├── .env                       # Biến môi trường
+└── composer.json              # Phụ thuộc PHP/Laravel
 ```
 
 ---
 
-## CÔNG NGHỆ VÀ CÔI CỤCUMUL
+## CÔNG NGHỆ STACK
 
 | Thành Phần | Công Nghệ |
 |-----------|----------|
-| Frontend | Vue.js 3, Vue Router, Pinia, Vite |
+| Frontend | Vue.js, Axios (gọi API) |
 | Styling | Tailwind CSS, Radix UI Components |
-| Backend | Express.js, Node.js |
-| Database | PostgreSQL (Neon Serverless) |
-| ORM | Drizzle ORM |
-| Language | 100% JavaScript (ES6+) |
-| Deployment | Replit (Autoscale) |
+| Backend | PHP/Laravel |
+| Database | MySQL |
+| Mô hình kiến trúc | MVC (Model-View-Controller) |
+| Database Design | Chuẩn 3NF (Third Normal Form) |
 
 ---
 
 ## HƯỚNG DẪN CÀI ĐẶT & CHẠY
 
 ### Yêu Cầu
-- Node.js 18+
-- PostgreSQL 12+ (hoặc sử dụng Replit - được cấp sẵn)
+- **Backend**: PHP 8.0+, Composer, Laravel 10+
+- **Frontend**: Node.js 16+, npm hoặc yarn
+- **Database**: MySQL 5.7+ hoặc MariaDB 10.3+
 
-### Các Bước
+### Các Bước Cài Đặt Backend (PHP/Laravel)
 
 1. **Cài đặt dependencies**
+   ```bash
+   composer install
+   ```
+
+2. **Tạo file .env**
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Thiết lập biến môi trường**
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=hrm_system
+   DB_USERNAME=root
+   DB_PASSWORD=
+   APP_KEY=base64:...
+   ```
+
+4. **Sinh Application Key**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Chạy migrations (tạo bảng)**
+   ```bash
+   php artisan migrate
+   ```
+
+6. **Seed dữ liệu mẫu (tùy chọn)**
+   ```bash
+   php artisan db:seed
+   ```
+
+7. **Khởi động Laravel development server**
+   ```bash
+   php artisan serve
+   ```
+   Backend chạy trên: **http://localhost:8000**
+
+### Các Bước Cài Đặt Frontend (Vue.js)
+
+1. **Vào thư mục frontend**
+   ```bash
+   cd frontend
+   ```
+
+2. **Cài đặt dependencies**
    ```bash
    npm install
    ```
 
-2. **Thiết lập biến môi trường**
-   - `DATABASE_URL`: PostgreSQL connection string
-   - `NODE_ENV`: 'development' hoặc 'production'
-   - `PORT`: 5000 (default)
-
-3. **Đẩy schema lên database**
-   ```bash
-   npm run db:push
-   ```
-
-4. **Khởi động development server**
+3. **Khởi động development server**
    ```bash
    npm run dev
    ```
-   Ứng dụng chạy trên: **http://localhost:5000**
+   Frontend chạy trên: **http://localhost:5173** (hoặc port mặc định)
 
-### Các Lệnh Disponibles
+### Các Lệnh Chủ Yếu
 
+**Backend (Laravel):**
 ```bash
-npm run dev         # Development server với hot reload
-npm run build       # Build cho production
-npm start           # Production server
-npm run db:push     # Đẩy schema thay đổi lên database
-npm run check       # Kiểm tra kiểu dữ liệu
+php artisan serve              # Khởi động development server
+php artisan migrate            # Chạy migrations
+php artisan db:seed            # Seed dữ liệu
+php artisan tinker             # Artisan interactive shell
+php artisan make:controller    # Tạo controller
+php artisan make:model         # Tạo model
+```
+
+**Frontend (Vue.js):**
+```bash
+npm run dev                    # Development server với hot reload
+npm run build                  # Build cho production
+npm run preview                # Preview production build
 ```
 
 ---
@@ -298,13 +348,13 @@ npm run check       # Kiểm tra kiểu dữ liệu
 
 ## TRẠNG THÁI DỰ ÁN
 
-- ✅ Backend API hoàn thiện
-- ✅ Frontend Vue.js hoàn thiện
-- ✅ Database schema deployed
-- ✅ 100% JavaScript (không TypeScript)
-- ✅ Responsive UI (desktop & mobile)
+- ✅ Database schema (ERD) thiết kế hoàn thiện
+- ✅ Backend Laravel (API endpoints) cần hoàn thiện
+- ✅ Frontend Vue.js với Axios cần hoàn thiện
+- ✅ Responsive UI (desktop & mobile) thiết kế
 - 🔄 Kết nối API frontend-backend
-- 🔄 Dữ liệu mẫu cho demo
+- 🔄 Dữ liệu mẫu cho demo (seeders)
+- 🔄 Xác thực & Phân quyền
 
 ---
 
@@ -315,12 +365,12 @@ npm run check       # Kiểm tra kiểu dữ liệu
 
 ---
 
-## BẢOẬT VÀ TRY CẬP
+## BẢOẤT & TRUY CẬP
 
-- ✅ Xác thực dựa trên session
-- ✅ Mã hóa mật khẩu với bcryptjs
+- ✅ Xác thực dựa trên session (Laravel sessions)
+- ✅ Mã hóa mật khẩu (bcrypt Laravel)
 - ✅ RBAC (Role-Based Access Control)
-- ✅ PostgreSQL connection pooling
+- ✅ MySQL connection pooling
 - ✅ Nhật ký hoạt động (activity_logs)
 
 ---
