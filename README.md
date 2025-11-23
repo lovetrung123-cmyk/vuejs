@@ -82,24 +82,40 @@ Frontend chạy trên: **http://localhost:5173**
 ## 📖 Cấu Trúc Dự Án
 
 ```
-├── app/
-│   ├── Http/Controllers/      # Controllers
-│   ├── Models/                # Models
-│   └── Requests/              # Form requests
-├── database/
-│   ├── migrations/            # DB migrations
-│   └── seeders/               # Dữ liệu mẫu
-├── routes/
-│   └── api.php                # API routes
-├── frontend/                  # Vue.js app
+├── client/                    # Vue.js Frontend
+│   ├── public/                # Static assets
 │   ├── src/
-│   │   ├── components/
-│   │   ├── views/
-│   │   └── services/          # Axios services
-│   └── package.json
-├── figma-exports/             # Static exports
-├── .env
-└── composer.json
+│   │   ├── components/        # Vue components
+│   │   ├── views/             # Trang chính (Dashboard, Employees, v.v.)
+│   │   ├── router/            # Vue Router config
+│   │   ├── services/          # API services (Axios)
+│   │   ├── stores/            # Pinia stores
+│   │   ├── types/             # Type definitions
+│   │   ├── App.vue
+│   │   ├── main.js
+│   │   └── index.css
+│   └── index.html
+├── server/                    # Express.js Backend
+│   ├── index.js               # Server entry point
+│   ├── routes.js              # API routes
+│   ├── storage.js             # Database config
+│   └── vite.js                # Vite dev server config
+├── shared/                    # Shared code
+│   └── schema.js              # Database schema (Drizzle)
+├── figma-exports/             # Static HTML/CSS exports (15 pages)
+│   ├── 01-Login/
+│   ├── 02-Dashboard/
+│   ├── 03-Employees/
+│   ├── 04-Departments/
+│   ├── ... (15 pages total)
+│   └── 15-EmployeePortal/
+├── attached_assets/           # Generated images/assets
+├── vite.config.js             # Vite config
+├── tailwind.config.js         # Tailwind CSS config
+├── drizzle.config.js          # Drizzle ORM config
+├── package.json               # Dependencies
+├── replit.md                  # Project documentation
+└── .replit                    # Replit configuration
 ```
 
 ## 🔐 Bảo Mật
