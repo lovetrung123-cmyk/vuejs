@@ -100,7 +100,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import ThemeToggle from '../components/ThemeToggle.vue';
@@ -123,6 +123,13 @@ const navItems = [
   { path: '/leaves', name: 'leaves', label: 'Nghỉ phép', icon: IconCalendar },
   { path: '/salaries', name: 'salaries', label: 'Lương', icon: IconCash },
   { path: '/roles', name: 'roles', label: 'Vai trò', icon: IconShield },
+  { path: '/job-titles', name: 'job-titles', label: 'Chức danh', icon: IconUser },
+  { path: '/job-families', name: 'job-families', label: 'Nhóm chức danh', icon: IconBuilding },
+  { path: '/employment-history', name: 'employment-history', label: 'Lịch sử công tác', icon: IconUser },
+  { path: '/work-shifts', name: 'work-shifts', label: 'Ca làm việc', icon: IconClock },
+  { path: '/work-schedules', name: 'work-schedules', label: 'Lên lịch', icon: IconCalendar },
+  { path: '/salary-components', name: 'salary-components', label: 'Thành phần lương', icon: IconCash },
+  { path: '/portal', name: 'portal', label: 'Cổng nhân viên', icon: IconUser },
 ];
 
 const currentPageTitle = computed(() => {
@@ -130,7 +137,7 @@ const currentPageTitle = computed(() => {
   return item?.label || route.meta.title || 'Dashboard';
 });
 
-const isActive = (path: string) => {
+const isActive = (path) => {
   if (path === '/') return route.path === '/';
   return route.path.startsWith(path);
 };

@@ -1,0 +1,146 @@
+📋 Task: Create HTML & CSS Static Files for All Application Pages
+Objective
+Generate static HTML and CSS files for all existing application pages in the figma-exports/ folder, with separate desktop and mobile versions.
+
+Pages to Create Files For:
+Login
+Dashboard
+Employees
+Departments
+Roles
+Attendance
+Leaves
+Salaries
+Job Titles
+Job Families
+Employment History
+Work Shifts
+Work Schedules
+Salary Components
+Employee Portal
+Employee Detail
+Employee Info
+Folder Structure Required:
+figma-exports/
+├── 01-login/
+│   ├── desktop.html
+│   ├── desktop.css
+│   ├── mobile.html
+│   └── mobile.css
+├── 02-dashboard/
+│   ├── desktop.html
+│   ├── desktop.css
+│   ├── mobile.html
+│   └── mobile.css
+├── 03-employees/
+│   ├── desktop.html
+│   ├── desktop.css
+│   ├── mobile.html
+│   └── mobile.css
+├── 04-departments/
+│   ├── desktop.html
+│   ├── desktop.css
+│   ├── mobile.html
+│   └── mobile.css
+├── 05-roles/
+├── 06-attendance/
+├── 07-leaves/
+├── 08-salaries/
+├── 09-job-titles/
+├── 10-job-families/
+├── 11-employment-history/
+├── 12-work-shifts/
+├── 13-work-schedules/
+├── 14-salary-components/
+├── 15-employee-portal/
+├── 16-employee-detail/
+├── 17-employee-info/
+└── assets/
+    ├── colors.css (shared color palette)
+    ├── typography.css (shared fonts)
+    └── components.css (shared UI components)
+
+HTML File Requirements:
+Semantic HTML5: Use proper semantic tags (header, nav, section, aside, main, footer)
+Accessibility: Include ARIA labels, alt text for images, semantic structure
+Mobile-First: Start with mobile then scale to desktop
+No JavaScript: Pure static HTML files (no functionality, just structure)
+Responsive Images: Use placeholder images with proper aspect ratios
+Meta Tags: Include viewport, charset, title, description
+CSS File Requirements:
+Desktop Breakpoint: 1024px+ (or custom)
+Mobile Breakpoint: Below 768px
+Tailwind-Compatible Classes: Use class names similar to Tailwind (flex, gap, p-4, text-lg, etc.) OR pure CSS with CSS variables
+Color Variables: Define in assets/colors.css with Vietnamese naming
+Responsive Design: Use CSS Grid/Flexbox for responsive layouts
+No Framework Dependencies: Pure CSS (no Bootstrap, no Tailwind import)
+Dark Mode Support: Include both light and dark theme CSS variables
+Page-Specific Content Guidance:
+Login Page:
+Email/Password input fields
+Remember me checkbox
+Sign in button
+Forgot password link
+Logo/branding
+Dashboard:
+Statistics cards (total employees, departments, pending leaves, today attendance)
+Charts/graphs placeholders (attendance trends, leave trends)
+Quick actions buttons
+Recent activities table
+Sidebar navigation
+Employee Management Pages:
+Table with columns (ID, Name, Department, Position, Status, Actions)
+Filter/search bar
+Add new button
+Action buttons (view, edit, delete)
+Pagination (if needed)
+Leave Management:
+Leave request form (from date, to date, reason, leave type)
+Leave balance cards
+Leave history table
+Approval workflow indicators
+Attendance:
+Check-in/Check-out buttons
+Attendance calendar/table
+Attendance trends chart
+Today's summary cards
+Salary Management:
+Salary components table
+Salary slip card
+Deduction vs Earning breakdown
+Chart visualization
+Design Consistency:
+Header: Navigation bar with user profile
+Sidebar: Navigation menu (visible on desktop, hamburger on mobile)
+Color Scheme: Use professional HR management colors
+Primary: Blue (#3B82F6 or similar)
+Success: Green (#10B981)
+Warning: Yellow (#F59E0B)
+Danger: Red (#EF4444)
+Neutral: Gray (#6B7280)
+Typography:
+Headings: Bold/Semi-bold, 24px-32px
+Body text: Regular, 14px-16px
+Labels: Semi-bold, 12px-14px
+Mobile-Specific Considerations:
+Touch targets: Minimum 44px height for buttons
+Spacing: Increased padding for mobile (16px-24px)
+Stack layouts: Vertical stacking instead of horizontal
+Navigation: Hamburger menu instead of full sidebar
+Modals: Full-screen or bottom-sheet style
+Forms: Single column, full-width inputs
+Naming Convention:
+Folder: {number}-{page-name} (e.g., 01-login, 02-dashboard)
+Files: desktop.html, desktop.css, mobile.html, mobile.css
+CSS Classes: kebab-case (e.g., .employee-table, .action-button)
+Deliverables Checklist:
+ 17 folders created with proper numbering
+ All pages have both desktop.html + desktop.css
+ All pages have both mobile.html + mobile.css
+ Shared assets folder with colors.css, typography.css, components.css
+ All HTML files are valid and semantic
+ CSS is responsive and uses variables
+ Navigation is consistent across all pages
+ Mobile menu implemented (hamburger)
+ All pages link to each other (where applicable)
+ Placeholder content reflects actual page purpose

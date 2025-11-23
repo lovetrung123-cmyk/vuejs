@@ -1,0 +1,49 @@
+
+:root {
+  /* Primary Colors */
+  --mau-chinh: #3B82F6;
+  --mau-chinh-dam: #2563EB;
+  --mau-chinh-nhat: #93C5FD;
+  
+  /* Success Colors */
+  --mau-thanh-cong: #10B981;
+  --mau-thanh-cong-dam: #059669;
+  --mau-thanh-cong-nhat: #6EE7B7;
+  
+  /* Warning Colors */
+  --mau-canh-bao: #F59E0B;
+  --mau-canh-bao-dam: #D97706;
+  --mau-canh-bao-nhat: #FCD34D;
+  
+  /* Danger Colors */
+  --mau-nguy-hiem: #EF4444;
+  --mau-nguy-hiem-dam: #DC2626;
+  --mau-nguy-hiem-nhat: #FCA5A5;
+  
+  /* Neutral Colors */
+  --mau-trung-tinh: #6B7280;
+  --mau-trung-tinh-dam: #374151;
+  --mau-trung-tinh-nhat: #D1D5DB;
+  
+  /* Background & Text */
+  --mau-nen: #FFFFFF;
+  --mau-nen-phu: #F9FAFB;
+  --mau-chu: #1F2937;
+  --mau-chu-phu: #6B7280;
+  
+  /* Border */
+  --mau-vien: #E5E7EB;
+  --ban-kinh-vien: 8px;
+  
+  /* Shadow */
+  --bong: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --bong-lon: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+[data-theme="dark"] {
+  --mau-nen: #1F2937;
+  --mau-nen-phu: #111827;
+  --mau-chu: #F9FAFB;
+  --mau-chu-phu: #D1D5DB;
+  --mau-vien: #374151;
+}

@@ -1,0 +1,212 @@
+📋 Task: Add Mock Data to 7 New Pages for UI Preview
+Objective
+Add sample/mock data to all 7 new view files so pages display real-looking content without needing backend API calls. This is for UI/design preview only.
+
+Pages to Add Mock Data:
+1. JobTitles.vue - Quản lý Chức danh
+Mock Data Structure:
+
+const jobTitles = ref([
+  { id: 1, code: 'JT001', name: 'Senior Developer', job_level: 'senior', is_active: true },
+  { id: 2, code: 'JT002', name: 'Project Manager', job_level: 'manager', is_active: true },
+  { id: 3, code: 'JT003', name: 'Business Analyst', job_level: 'junior', is_active: true },
+  { id: 4, code: 'JT004', name: 'QA Engineer', job_level: 'senior', is_active: true },
+  { id: 5, code: 'JT005', name: 'UI/UX Designer', job_level: 'lead', is_active: false },
+]);
+
+Implementation: In onMounted() hook, set jobTitles.value to mock data
+
+2. JobFamilies.vue - Quản lý Nhóm chức danh
+Mock Data Structure:
+
+const jobFamilies = ref([
+  { id: 1, code: 'JF001', name: 'IT & Technology', description: 'All IT-related positions', is_active: true },
+  { id: 2, code: 'JF002', name: 'Sales & Marketing', description: 'Sales and marketing team', is_active: true },
+  { id: 3, code: 'JF003', name: 'Human Resources', description: 'HR department roles', is_active: true },
+  { id: 4, code: 'JF004', name: 'Finance & Accounting', description: 'Finance team', is_active: true },
+  { id: 5, code: 'JF005', name: 'Operations', description: 'Operations department', is_active: true },
+]);
+
+Implementation: In onMounted() hook, set jobFamilies.value to mock data
+
+3. EmploymentHistory.vue - Quản lý Lịch sử công tác
+Mock Data Structure:
+
+const employmentHistory = ref([
+  { 
+    id: 1, 
+    employee_id: 1, 
+    employee: { full_name: 'Nguyễn Văn A' },
+    department_id: 1,
+    department: { name: 'IT' },
+    job_title_id: 1,
+    job_title: { name: 'Senior Developer' },
+    start_date: '2022-01-15', 
+    end_date: null, 
+    employment_status: 'active' 
+  },
+  { 
+    id: 2, 
+    employee_id: 2, 
+    employee: { full_name: 'Trần Thị B' },
+    department_id: 2,
+    department: { name: 'Sales' },
+    job_title_id: 2,
+    job_title: { name: 'Sales Manager' },
+    start_date: '2021-06-20', 
+    end_date: null, 
+    employment_status: 'active' 
+  },
+  // Add 3-5 more records
+]);
+const employeeOptions = ref([
+  { value: 1, label: 'Nguyễn Văn A' },
+  { value: 2, label: 'Trần Thị B' },
+  { value: 3, label: 'Lê Văn C' },
+]);
+
+Implementation: In onMounted() hook, set both employmentHistory.value and employeeOptions.value
+
+4. WorkShifts.vue - Quản lý Ca làm việc
+Mock Data Structure:
+
+const workShifts = ref([
+  { id: 1, code: 'SHIFT001', name: 'Sáng (Morning)', start_time: '08:00', end_time: '12:00', break_minutes: 0, is_active: true },
+  { id: 2, code: 'SHIFT002', name: 'Chiều (Afternoon)', start_time: '13:00', end_time: '17:30', break_minutes: 30, is_active: true },
+  { id: 3, code: 'SHIFT003', name: 'Toàn ngày (Full Day)', start_time: '08:00', end_time: '17:30', break_minutes: 60, is_active: true },
+  { id: 4, code: 'SHIFT004', name: 'Ca đêm (Night Shift)', start_time: '18:00', end_time: '22:00', break_minutes: 30, is_active: false },
+]);
+
+Implementation: In onMounted() hook, set workShifts.value to mock data
+
+5. WorkSchedules.vue - Quản lý Lên lịch làm việc
+Mock Data Structure:
+
+const workSchedules = ref([
+  { id: 1, employee_id: 1, employee: { full_name: 'Nguyễn Văn A' }, work_date: '2025-11-24', shift_id: 3, status: 'scheduled' },
+  { id: 2, employee_id: 2, employee: { full_name: 'Trần Thị B' }, work_date: '2025-11-24', shift_id: 1, status: 'present' },
+  { id: 3, employee_id: 3, employee: { full_name: 'Lê Văn C' }, work_date: '2025-11-24', shift_id: 2, status: 'absent' },
+  { id: 4, employee_id: 1, employee: { full_name: 'Nguyễn Văn A' }, work_date: '2025-11-25', shift_id: 3, status: 'scheduled' },
+  // Add 3-5 more
+]);
+const employeeOptions = ref([
+  { value: 1, label: 'Nguyễn Văn A' },
+  { value: 2, label: 'Trần Thị B' },
+  { value: 3, label: 'Lê Văn C' },
+]);
+const shiftOptions = ref([
+  { value: 1, label: 'Sáng' },
+  { value: 2, label: 'Chiều' },
+  { value: 3, label: 'Toàn ngày' },
+]);
+
+Implementation: In onMounted() hook, set all three refs with mock data
+
+6. SalaryComponents.vue - Quản lý Thành phần lương
+Mock Data Structure:
+
+const salaryComponents = ref([
+  { id: 1, code: 'SC001', name: 'Lương cơ bản', type: 'earning', category: 'basic', is_taxable: true, is_active: true },
+  { id: 2, code: 'SC002', name: 'Phụ cấp trách nhiệm', type: 'earning', category: 'allowance', is_taxable: false, is_active: true },
+  { id: 3, code: 'SC003', name: 'Phụ cấp xăng xe', type: 'earning', category: 'allowance', is_taxable: false, is_active: true },
+  { id: 4, code: 'SC004', name: 'Thưởng hiệu suất', type: 'earning', category: 'bonus', is_taxable: true, is_active: true },
+  { id: 5, code: 'SC005', name: 'Bảo hiểm xã hội', type: 'deduction', category: 'insurance', is_taxable: false, is_active: true },
+  { id: 6, code: 'SC006', name: 'Thuế thu nhập cá nhân', type: 'deduction', category: 'tax', is_taxable: false, is_active: true },
+]);
+
+Implementation: In onMounted() hook, set salaryComponents.value to mock data
+
+7. EmployeePortal.vue - Cổng Nhân viên
+Mock Data Structure:
+
+const currentEmployee = ref({
+  id: 1,
+  code: 'EMP001',
+  full_name: 'Nguyễn Văn A',
+  job_title: { name: 'Senior Developer' },
+  department: { name: 'IT Department' }
+});
+const attendanceStats = ref({
+  present: 18,
+  absent: 2,
+  late: 1
+});
+const attendanceRecords = ref([
+  { id: 1, record_date: '2025-11-23', check_in_time: '07:45', check_out_time: '17:30', status: 'present' },
+  { id: 2, record_date: '2025-11-22', check_in_time: '08:15', check_out_time: '17:30', status: 'late' },
+  { id: 3, record_date: '2025-11-21', check_in_time: '07:50', check_out_time: '17:30', status: 'present' },
+  // Add 5-10 more records
+]);
+const leaveBalances = ref([
+  { id: 1, leave_type: { name: 'Phép năm' }, remaining: 15 },
+  { id: 2, leave_type: { name: 'Phép bệnh' }, remaining: 5 },
+  { id: 3, leave_type: { name: 'Phép không lương' }, remaining: 0 },
+]);
+const leaveRequests = ref([
+  { id: 1, start_date: '2025-12-20', end_date: '2025-12-22', leave_type_id: 1, leave_type: { name: 'Phép năm' }, status: 'pending' },
+  { id: 2, start_date: '2025-11-15', end_date: '2025-11-15', leave_type_id: 2, leave_type: { name: 'Phép bệnh' }, status: 'approved' },
+  // Add 2-3 more
+]);
+const salary = ref({
+  basic: 10000000,
+  allowances: 2000000,
+  deductions: 1500000,
+  net: 10500000
+});
+
+Implementation: In onMounted() hook, set all refs with mock data
+
+Implementation Steps:
+Step 1: Update Each File
+For each view file (JobTitles.vue, JobFamilies.vue, etc.):
+
+// In the script setup section, replace the onMounted hook:
+onMounted(() => {
+  // Instead of: // Load from API
+  // Add mock data like:
+  jobTitles.value = [
+    { id: 1, code: 'JT001', name: 'Senior Developer', ... },
+    // etc
+  ];
+});
+
+Step 2: Data Consistency Rules
+Use realistic Vietnamese names (Nguyễn, Trần, Lê, Phạm, Hoàng)
+Use realistic company departments (IT, Sales, HR, Finance, Operations)
+Use realistic job titles (Developer, Manager, Analyst, Designer)
+Use realistic dates (current/recent dates)
+Use realistic salary amounts (in VND, e.g., 10,000,000 = ~$430 USD)
+Match status values exactly: 'active', 'inactive', 'pending', 'approved', 'rejected'
+Step 3: Sample Count
+Tables/Lists: 4-6 records each (enough to show pagination/scrolling)
+Selection Options: 3-5 options
+Cards: Match database schema exactly
+Step 4: Date Format
+All dates should be ISO format: 'YYYY-MM-DD'
+Times should be 24-hour format: 'HH:MM'
+Step 5: Testing
+After adding mock data to each file:
+
+Navigate to the page in the app
+Verify data displays correctly
+Test filter/search functions (they should work with mock data)
+Check table pagination if applicable
+Files to Modify:
+client/src/views/JobTitles.vue
+client/src/views/JobFamilies.vue
+client/src/views/EmploymentHistory.vue
+client/src/views/WorkShifts.vue
+client/src/views/WorkSchedules.vue
+client/src/views/SalaryComponents.vue
+client/src/views/EmployeePortal.vue
+Do NOT:
+❌ Modify backend code
+❌ Call real APIs (keep local mock data only)
+❌ Change component structure
+❌ Remove any functionality
+DO:
+✅ Use realistic, Vietnamese names
+✅ Use consistent data across pages
+✅ Follow existing data structure patterns
+✅ Add enough records to show list properly
+✅ Test each page after adding data

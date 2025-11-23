@@ -7,50 +7,54 @@
 
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-      <BaseCard hoverable data-testid="card-total-employees" class="p-4 sm:p-6">
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <IconUser class="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+      <BaseCard hoverable data-testid="card-total-employees" class="p-6 overflow-hidden relative group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300"></div>
+        <div class="relative flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+            <IconUser class="w-7 h-7 text-white" />
           </div>
           <div class="flex-1">
-            <p class="text-xs sm:text-sm text-muted-foreground">Tổng nhân viên</p>
-            <p class="text-2xl sm:text-3xl font-bold text-foreground">{{ stats.totalEmployees }}</p>
+            <p class="text-sm text-muted-foreground font-medium mb-1">Tổng nhân viên</p>
+            <p class="text-3xl font-bold text-foreground tracking-tight">{{ stats.totalEmployees }}</p>
           </div>
         </div>
       </BaseCard>
 
-      <BaseCard hoverable data-testid="card-total-departments" class="p-4 sm:p-6">
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-            <IconBuilding class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" />
+      <BaseCard hoverable data-testid="card-total-departments" class="p-6 overflow-hidden relative group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-info/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300"></div>
+        <div class="relative flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl gradient-info flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+            <IconBuilding class="w-7 h-7 text-white" />
           </div>
           <div class="flex-1">
-            <p class="text-xs sm:text-sm text-muted-foreground">Phòng ban</p>
-            <p class="text-2xl sm:text-3xl font-bold text-foreground">{{ stats.activeDepartments }}</p>
+            <p class="text-sm text-muted-foreground font-medium mb-1">Phòng ban</p>
+            <p class="text-3xl font-bold text-foreground tracking-tight">{{ stats.activeDepartments }}</p>
           </div>
         </div>
       </BaseCard>
 
-      <BaseCard hoverable data-testid="card-pending-leaves" class="p-4 sm:p-6">
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center">
-            <IconCalendar class="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 dark:text-amber-400" />
+      <BaseCard hoverable data-testid="card-pending-leaves" class="p-6 overflow-hidden relative group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-warning/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300"></div>
+        <div class="relative flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl gradient-warning flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+            <IconCalendar class="w-7 h-7 text-white" />
           </div>
           <div class="flex-1">
-            <p class="text-xs sm:text-sm text-muted-foreground">Đơn chờ duyệt</p>
-            <p class="text-2xl sm:text-3xl font-bold text-foreground">{{ stats.pendingLeaves }}</p>
+            <p class="text-sm text-muted-foreground font-medium mb-1">Đơn chờ duyệt</p>
+            <p class="text-3xl font-bold text-foreground tracking-tight">{{ stats.pendingLeaves }}</p>
           </div>
         </div>
       </BaseCard>
 
-      <BaseCard hoverable data-testid="card-today-attendance" class="p-4 sm:p-6">
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
-            <IconClock class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" />
+      <BaseCard hoverable data-testid="card-today-attendance" class="p-6 overflow-hidden relative group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-success/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300"></div>
+        <div class="relative flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl gradient-success flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+            <IconClock class="w-7 h-7 text-white" />
           </div>
           <div class="flex-1">
-            <p class="text-xs sm:text-sm text-muted-foreground">Có mặt hôm nay</p>
-            <p class="text-2xl sm:text-3xl font-bold text-foreground">{{ stats.todayAttendance.present }}</p>
+            <p class="text-sm text-muted-foreground font-medium mb-1">Có mặt hôm nay</p>
+            <p class="text-3xl font-bold text-foreground tracking-tight">{{ stats.todayAttendance.present }}</p>
           </div>
         </div>
       </BaseCard>

@@ -1,0 +1,1695 @@
+﻿A logo of a company
+
+Description automatically generated 
+
+
+
+    TRƯỜNG CAO ĐẲNG THỰC HÀNH FPT                      
+---🙠🕮🙢---
+
+
+
+
+ A logo of a company
+
+Description automatically generated 
+
+
+
+
+
+        BÁO CÁO DỰ ÁN 1
+        QUẢN LÝ NHÂN SỰ
+
+
+
+
+
+
+
+
+        GV HƯỚNG DẪN: Phạm Nguyễn Lệ Thư
+        SV THỰC HIỆN:        MSSV  
+        - Vũ Ngọc Hoàng        PI01959
+        - Nguyễn Đức Trung         PI00307
+        - Trần Lương Mai Nam        PI00311
+        - Huỳnh Minh Khương        PI00313  
+
+
+
+
+  
+  
+  
+
+Biên Hòa – 2025                
+MỤC LỤC
+                
+TRƯỜNG CAO ĐẲNG THỰC HÀNH FPT        1
+LỜI MỞ ĐẦU        4
+PHẦN 1: GIỚI THIỆU ĐỀ TÀI        5
+1.1. Bối cảnh và lý do chọn đề tài        5
+1.2. Mục tiêu, phạm vi và kết quả mong đợi        6
+1.2.1. Mục tiêu tổng quát        6
+1.2.2. Mục tiêu cụ thể (Functional & Non-functional)        6
+1.2.3. Phạm vi thực hiện        7
+1.2.4. Đánh giá đề tài        8
+1.2.5. Đối tượng sử dụng        9
+1.2.6. Phương pháp & công cụ triển khai        10
+PHẦN 2: PHÂN TÍCH YÊU CẦU        11
+2.1. Khảo sát nghiệp vụ        11
+2.2. Phân rã chức năng (User case)        11
+PHẦN 3: THIẾT KẾ ỨNG DỤNG        14
+3.1. Thiết kế Mô hình Dữ liệu (ERD)        14
+3.1.1 Sơ đồ Usercase        16
+3.2 Chi tiết liệt kê các bảng ERD        17
+3.2.1 Sơ đồ quan hệ ERD        30
+3.3 Sơ đồ chi tiết thực thể        31
+3.4. Sơ đồ trang (Sitemap)        34
+3.5. Mô tả các trang và luồng liên kết        35
+3.5.1. Luồng của Quản trị viên (Admin)        35
+3.5.2. Luồng của Nhân viên (Employee)        39
+
+
+________________
+
+
+LỜI MỞ ĐẦU
+Trong thời đại công nghệ phát triển nhanh chóng, quản trị nhân sự không còn dừng lại ở việc lưu trữ hồ sơ thủ công trên các tệp Excel phân tán. Quản lý nguồn nhân lực (HRM) đòi hỏi một hệ thống số hoá, đồng bộ, an toàn và có khả năng tự động hoá quy trình.
+Việc áp dụng các nền tảng web vào quản lý nhân sự giúp tối ưu hóa các quy trình nghiệp vụ phức tạp: từ việc quản lý hồ sơ nhân viên, theo dõi chấm công, phê duyệt nghỉ phép, cho đến việc thực thi các chu kỳ đánh giá hiệu suất và tính toán lương, thưởng. Một hệ thống tập trung giúp chuẩn hóa dữ liệu, giảm sai sót thủ công, tăng cường bảo mật và cung cấp cho ban lãnh đạo cái nhìn tổng quan để hỗ trợ ra quyết định.
+Từ yêu cầu thực tiễn đó, nhóm chúng em thực hiện đề tài “Xây dựng website Quản lý Nhân sự”.
+Mục tiêu của đề tài là thiết kế và xây dựng một hệ thống HRM nền tảng, tập trung vào các chức năng cốt lõi và có tính tương tác cao, bao gồm: Quản lý Hồ sơ nhân sự (Core HR), Quản lý Thời gian (Chấm công & Nghỉ phép), Quản lý Lương thưởng (Payroll), và Quản lý Hiệu suất (Performance). Hệ thống hướng đến việc cung cấp trải nghiệm rõ ràng cho các vai trò khác nhau (Nhân viên, Quản lý, Bộ phận HR), đảm bảo tính toàn vẹn dữ liệu và khả năng mở rộng trong tương lai.
+Phạm vi của đồ án tập trung vào các nghiệp vụ nhân sự phổ biến nhất, mô phỏng quy trình trong môi trường doanh nghiệp vừa và nhỏ. Nhóm áp dụng quy trình phát triển theo hướng Agile tinh gọn, tập trung vào việc phân rã yêu cầu, thiết kế mô hình dữ liệu (ERD), và lập trình theo mô hình MVC.
+Nhóm xin chân thành cảm ơn Cô Phạm Nguyễn Lệ Thư đã hướng dẫn và hỗ trợ chúng em trong suốt quá trình thực hiện.
+________________
+PHẦN 1: GIỚI THIỆU ĐỀ TÀI
+1.1. Bối cảnh và lý do chọn đề tài
+Trong bối cảnh chuyển đổi số, bài toán quản lý nhân sự (HRM) tại các đơn vị vừa và nhỏ vẫn thường đối mặt với nhiều thách thức:
+* Dữ liệu phân tán: Hồ sơ nhân viên, lịch sử công tác, thông tin nghỉ phép thường được lưu rải rác trên nhiều tệp Excel, gây khó khăn cho việc tổng hợp và báo cáo.
+* Quy trình thủ công: Các quy trình như duyệt nghỉ phép, đăng ký ca làm việc, hoặc tổng hợp bảng công cuối tháng thường diễn ra bán thủ công qua email hoặc giấy tờ, gây lãng phí thời gian và khó truy vết.
+* Thiếu nhất quán và sai lệch: Việc tổng hợp dữ liệu từ nhiều nguồn dễ dẫn đến sai sót, đặc biệt khi tính toán số ngày công, ngày phép còn lại.
+* Rủi ro bảo mật: Chia sẻ các tệp tin nhạy cảm (như thông tin cá nhân, lương cơ bản) qua các kênh không được kiểm soát có thể gây lộ lọt thông tin.
+Từ nhu cầu thực tiễn đó, nhóm xây dựng đề tài “Website Quản lý Nhân sự” như một bài tập dự án học phần nhằm:
+* Mô phỏng một hệ thống HRM nền tảng, giải quyết các nghiệp vụ cốt lõi và cấp thiết nhất (Hồ sơ, Cơ cấu tổ chức, Chấm công, Nghỉ phép).
+* Vận dụng kiến thức môn học vào bài toán thực tế: phân tích yêu cầu, thiết kế CSDL quan hệ chuẩn hóa (3NF), tổ chức kiến trúc phần mềm (MVC), và đảm bảo các tiêu chí về tính đúng đắn và tin cậy của dữ liệu.
+Tạo ra một sản phẩm có thể phát triển tiếp, có khả năng mở rộng để áp dụng trong quy mô lớp học hoặc doanh nghiệp nhỏ.
+1.2. Mục tiêu, phạm vi và kết quả mong đợi
+1.2.1. Mục tiêu tổng quát
+* Xây dựng một website quản lý nhân sự tập trung, có kiến trúc rõ ràng, dễ bảo trì, đảm bảo tính toàn vẹn và bảo mật dữ liệu nhân viên.
+* Cung cấp trải nghiệm người dùng trực quan, tự động hoá các quy trình nghiệp vụ lặp lại (ví dụ: quy trình phê duyệt nghỉ phép), và hỗ trợ truy xuất dữ liệu nhanh.
+1.2.2. Mục tiêu cụ thể (Functional & Non-functional)
+Dựa trên cấu trúc CSDL , hệ thống cung cấp các chức năng chính, được phân chia theo các module nghiệp vụ sau:
+* Quản lý Hệ thống & Phân quyền:
+   * Quản lý tài khoản đăng nhập (users).
+   * Quản lý vai trò và phân quyền (roles).
+   * Ghi nhận nhật ký thay đổi dữ liệu (activity_logs).
+* Quản lý Cơ cấu tổ chức:
+   * Quản lý danh mục phòng ban, có phân cấp cha-con (departments).
+   * Quản lý danh mục chức danh (job_titles) và nhóm chức danh (job_families).
+* Quản lý Hồ sơ Nhân sự (Core HR):
+   * Quản lý thông tin cá nhân chi tiết của nhân viên (employees).
+   * Quản lý và lưu trữ lịch sử công tác (employment_histories), bao gồm: phòng ban, chức danh, trạng thái làm việc (active, probation, inactive), loại hợp đồng, và lương cơ bản theo từng thời kỳ.
+* Quản lý Thời gian (Time & Attendance):
+   * Quản lý danh mục các loại nghỉ phép (leave_types).
+   * Quản lý số dư phép hàng năm của nhân viên (leave_balances).
+   * Xử lý quy trình xin nghỉ phép (tạo đơn, chờ duyệt, đã duyệt/từ chối) (leave_requests).
+   * Quản lý danh mục ca làm việc (work_shifts).
+   * Lên lịch làm việc chi tiết theo ngày cho nhân viên (work_schedules).
+   * Ghi nhận dữ liệu chấm công thực tế (check-in/out) (attendance_records).
+* Quản lý Thiết lập Lương (Salary Configuration):
+   * Quản lý danh mục các thành phần lương (thu nhập, khấu trừ) (salary_components).
+   * Gán các thành phần lương cố định (ví dụ: lương cơ bản, phụ cấp) cho nhân viên theo ngày hiệu lực (employee_salaries).
+1.2.3. Phạm vi thực hiện
+Trong phạm vi:
+   * Các nghiệp vụ HRM cốt lõi đã nêu tại mục 1.2.2, tập trung sâu vào quản lý hồ sơ và quản lý thời gian (chấm công, nghỉ phép).
+   * Dữ liệu mẫu phục vụ kiểm thử và demo quy trình.
+Ngoài phạm vi (Dựa trên DDL ):
+   * Quy trình tính lương hàng tháng (Payroll Run) và phát hành phiếu lương (Payslip).
+   * Module Quản lý Đánh giá hiệu suất (Performance Management).
+   * Module Quản lý Tuyển dụng (Recruitment) và Đào tạo (Training).
+   * Tích hợp máy chấm công vật lý (dữ liệu chấm công giả định được nhập hoặc import vào attendance_records ).
+1.2.4. Đánh giá đề tài
+Đề tài được lựa chọn dựa trên 5 tiêu chí do giảng viên hướng dẫn đề xuất:
+1. Tính mới mẻ/độc đáo: 
+* Không chỉ áp dụng kiến trúc MVC và cơ sở dữ liệu quan hệ chuẩn 3NF, hệ thống còn hướng đến khả năng mở rộng trong tương lai như tách lớp API, đồng bộ với thiết bị chấm công, tích hợp dashboard thời gian thực.
+* Module quản lý thời gian không dừng ở việc lưu giờ vào ra mà còn mô tả được ca làm việc linh hoạt, ca xoay, làm thêm giờ, tăng ca cuối tuần, giúp mô phỏng sát thực tế doanh nghiệp.
+* Giao diện web được thiết kế thân thiện cho cả hai nhóm người dùng là phòng nhân sự và nhân viên, chú trọng trải nghiệm tra cứu nhanh, hạn chế nhập liệu trùng lặp.
+2. Tính thực tiễn: 
+* Đề tài phù hợp với bối cảnh nhiều doanh nghiệp vừa và nhỏ cần số hóa quy trình nhân sự nhưng chi phí dành cho các giải pháp thương mại là khá cao, hệ thống có thể triển khai nội bộ với chi phí hạ tầng thấp.
+* Việc tự động hóa khâu chấm công, tính phép, tính số giờ làm thêm giúp giảm sai sót về lương và ngày công, tiết kiệm thời gian cho bộ phận nhân sự.
+* Hệ thống hỗ trợ trích xuất các báo cáo cần thiết phục vụ thanh tra lao động, báo cáo cho ban lãnh đạo, thống kê tình hình nghỉ phép và đi muộn, qua đó mang lại giá trị sử dụng cụ thể và rõ ràng.
+3. Tính kế thừa: 
+* Hệ thống được xây dựng dựa trên các quy trình nghiệp vụ nhân sự đã được chuẩn hóa như quản lý hồ sơ nhân viên, lịch sử công tác, cơ cấu tổ chức, từ đó người dùng dễ dàng chuyển đổi từ cách làm thủ công sang trên phần mềm.
+* Cấu trúc cơ sở dữ liệu ưu tiên tính mở rộng, cho phép sau này bổ sung thêm các phân hệ khác như tuyển dụng, đánh giá hiệu suất, đào tạo, mà không phá vỡ mô hình dữ liệu hiện tại.
+4. Tính cân bằng: 
+* Đề tài không chỉ tập trung vào một mảng đơn lẻ mà phân bổ tương đối đều cho bốn khối nghiệp vụ chính là hồ sơ, tổ chức, chấm công, nghỉ phép; từ đó thể hiện được cái nhìn toàn diện về hệ thống quản lí nhân sự.
+* Thiết kế cơ sở dữ liệu có sự cân nhắc giữa mức độ chi tiết và khả năng triển khai trong phạm vi đồ án, vừa đảm bảo đủ thông tin phục vụ nghiệp vụ, vừa không quá nặng nề cho việc lập trình và kiểm thử.
+5. Tính đạo đức: 
+* Khi xử lý thông tin nhạy cảm như dữ liệu cá nhân, lịch sử công tác, mức lương, hệ thống buộc phải đề cao nguyên tắc bảo mật và phân quyền.
+* Cơ chế phân quyền chi tiết cho quản trị viên, cán bộ nhân sự, trưởng bộ phận và nhân viên, bảo đảm mỗi người chỉ truy cập được đúng phần dữ liệu phục vụ công việc, hạn chế tối đa việc lộ lọt thông tin.
+* Hệ thống có thể thiết kế thêm chức năng ghi nhận nhật ký truy cập và các thao tác quan trọng như chỉnh sửa lương cơ bản, duyệt phép, chỉnh sửa bảng công, tạo cơ sở để kiểm tra và đối chiếu khi phát sinh khiếu nại.
+1.2.5. Đối tượng sử dụng
+Hệ thống được thiết kế cho 4 vai trò chính:
+1. Admin (Quản trị hệ thống): Cấu hình hệ thống, quản lý vai trò (roles) , quản lý các danh mục lõi (phòng ban, chức danh, loại phép).
+2. HR (Bộ phận Nhân sự): Quản lý toàn bộ hồ sơ nhân viên (employees) và lịch sử công tác (employment_histories) , quản lý lịch làm việc và chấm công (work_schedules, attendance_records), theo dõi tổng quan nghỉ phép.
+3. Manager (Quản lý cấp trung): Phê duyệt các yêu cầu nghỉ phép (leave_requests) của nhân viên, xem lịch làm việc của bộ phận.
+4. Staff (Nhân viên): Xem thông tin cá nhân, tạo đơn xin nghỉ phép (leave_requests) , xem số dư phép (leave_balances) và lịch làm việc (work_schedules) của bản thân.
+1.2.6. Phương pháp & công cụ triển khai
+Quy trình: Agile tinh gọn theo vòng lặp (phân tích yêu cầu -> thiết kế (ERD, use case) -> hiện thực -> kiểm thử -> hiệu chỉnh).
+Công cụ:
+* Thiết kế/Mockup: Figma.
+* Thiết kế CSDL: dbdiagram.io.
+* Quản lý mã nguồn: GitHub.
+Công nghệ:
+   * Backend: PHP/Laravel
+   * Frontend: VueJS kết hợp với Axios gọi API
+   * CSDL: MySQL.
+
+
+
+
+
+
+
+
+________________
+
+
+
+
+PHẦN 2: PHÂN TÍCH YÊU CẦU
+
+
+2.1. Khảo sát nghiệp vụ
+Phân tích nghiệp vụ của dự án được thực hiện dựa trên cấu trúc CSDL mà nhóm đã thiết kế. Hệ thống tập trung vào việc chuẩn hóa và quản lý dữ liệu nhân sự một cách chi tiết, đặc biệt là các nghiệp vụ liên quan đến lịch sử công tác và quản lý thời gian (chấm công, nghỉ phép).Dự án này tập trung vào các nghiệp vụ cốt lõi và có tần suất sử dụng cao nhất từ hai hệ thống trên.
+
+
+2.2. Phân rã chức năng (User case)
+Các chức năng của hệ thống được phân rã theo các module chính, dựa trên DDL
+Module 1: Hệ thống & Phân quyền (Tác nhân chính: Admin)
+Quản lý vai trò: Tạo/sửa/vô hiệu hóa các vai trò (ví dụ: Admin, HR, Manager, Staff).
+Quản lý người dùng: Tạo tài khoản, gán email, mật khẩu và gán vai trò (role_id) cho người dùng.
+Xem nhật ký hệ thống: Tra cứu lịch sử thay đổi dữ liệu (ai, khi nào, sửa gì).
+Module 2: Quản lý Cơ cấu tổ chức (Tác nhân chính: Admin/HR)
+Quản lý phòng ban: Tạo/sửa/xoá phòng ban, thiết lập quan hệ cha-con (parent_id) và gán quản lý (manager_id) cho phòng ban.
+Quản lý chức danh: Tạo/sửa/xoá chức danh (ví dụ: Senior Developer) và nhóm chức danh (ví dụ: Engineering).
+Module 3: Quản lý Hồ sơ Nhân sự (Core HR) (Tác nhân chính: HR)
+Tạo hồ sơ nhân viên: Nhập thông tin cá nhân (họ tên, ngày sinh, CCCD, thông tin liên lạc...) và gán tài khoản người dùng (user_id).
+Quản lý lịch sử công tác: Tạo và quản lý các bản ghi lịch sử (employment_histories) cho nhân viên. Đây là nghiệp vụ then chốt, ghi nhận:
+   * Giai đoạn làm việc (start_date, end_date).
+   * Vị trí (phòng ban, chức danh).
+   * Trạng thái (thử việc, chính thức, nghỉ việc...).
+   * Lương cơ bản (salary) tại thời điểm đó.
+Module 4: Quản lý Thời gian (Time & Attendance) (Tác nhân chính: HR, Manager, Employee)
+Thiết lập ca làm việc: Tạo các ca làm việc (ví dụ: Giờ hành chính, Ca đêm) với thời gian bắt đầu, kết thúc, và giờ nghỉ.
+Sắp xếp lịch làm việc: HR gán ca làm việc cho nhân viên theo từng ngày cụ thể (work_schedules).
+Ghi nhận chấm công: Nhập/Import dữ liệu chấm công (check-in/out) thực tế của nhân viên (attendance_records).
+Quản lý nghỉ phép (Nhân viên):
+   * Xem số dư phép còn lại (leave_balances).
+   * Tạo đơn xin nghỉ phép (chọn loại phép, lý do, ngày nghỉ) (leave_requests).
+Quản lý nghỉ phép (Quản lý):
+   * Xem danh sách đơn xin nghỉ ở trạng thái "pending".
+   * Phê duyệt (approved) hoặc Từ chối (rejected) đơn xin nghỉ.
+Quản lý nghỉ phép (HR):
+   * Cấu hình các loại nghỉ phép (nghỉ năm, nghỉ ốm...).
+   * Cấp (hoặc tự động tạo) số dư phép hàng năm cho nhân viên (leave_balances).
+Module 5: Quản lý Thiết lập Lương (Tác nhân chính: HR/Payroll Admin)
+Quản lý thành phần lương: Tạo/sửa các loại thu nhập (lương cơ bản, phụ cấp...) hoặc khấu trừ (BHXH, thuế TNCN...).
+Gán lương/phụ cấp cho nhân viên: Chỉ định các khoản lương/phụ cấp cố định (ví dụ: Phụ cấp xăng xe 500,000VND) cho nhân viên, có ngày hiệu lực rõ ràng (employee_salaries).
+2.3. Yêu cầu phi chức năng
+Hệ thống cần tuân thủ các yêu cầu phi chức năng sau:
+Hiệu năng (Performance): Tải trang và các truy vấn danh sách (ví dụ: danh sách 1.000 nhân viên) phải phản hồi dưới 2 giây.
+Bảo mật (Security):
+   * Mật khẩu người dùng phải được hash (như trong bảng users.password).
+   * Phân quyền truy cập nghiêm ngặt dựa trên roles và các khóa ngoại (ví dụ: employment_histories.employee_id ).
+Tính toàn vẹn dữ liệu (Integrity):
+   * Sử dụng ràng buộc khóa ngoại (Foreign Keys) để đảm bảo dữ liệu nhất quán (ví dụ: không thể xoá phòng ban nếu còn nhân viên).
+   * Sử dụng các ràng buộc unique cho các mã (code) và email để tránh trùng lặp.
+Khả năng mở rộng (Scalability): Kiến trúc phải được tổ chức theo mô hình MVC rõ ràng. CSDL được thiết kế chuẩn 3NF, sẵn sàng cho việc mở rộng các module (như Payroll Run, Performance) sau này.
+Nhật ký (Logging): Bảng activity_logs phải ghi lại các thay đổi quan trọng (tạo, sửa, xoá) trên các bản ghi nhạy cảm (ví dụ: employees, employee_salaries).
+________________
+
+
+
+
+PHẦN 3: THIẾT KẾ ỨNG DỤNG
+
+
+3.1. Thiết kế Mô hình Dữ liệu (ERD)
+Mô hình dữ liệu quan hệ (ERD) được thiết kế theo chuẩn 3NF, đảm bảo tính toàn vẹn và giảm thiểu dư thừa dữ liệu.
+Các thực thể (bảng) chính được nhóm theo các module nghiệp vụ như sau:
+Nhóm 1: Hệ thống & Phân quyền (System & RBAC)
+   * users: Lưu thông tin đăng nhập và role_id.
+   * roles: Định nghĩa các vai trò và quyền hạn (permissions).
+   * activity_logs: Ghi nhật ký các hành động (create, update, delete) trong hệ thống.
+Nhóm 2: Cơ cấu tổ chức (Organization Structure)
+   * departments: Danh mục phòng ban, hỗ trợ cấu trúc cây (parent_id).
+   * job_titles: Danh mục chức danh.
+   * job_families: Danh mục nhóm chức danh (cha của job_titles).
+Nhóm 3: Hồ sơ nhân viên (Core HR)
+   * employees: Bảng trung tâm lưu trữ thông tin cá nhân (CCCD, thuế, địa chỉ...) và liên kết với users.
+   * employment_histories: Bảng lịch sử công tác, lưu các thay đổi về phòng ban, chức danh, trạng thái, và lương cơ bản qua thời gian. Đây là bảng nghiệp vụ chính liên kết nhân viên với cơ cấu tổ chức.
+Nhóm 4: Quản lý Thời gian & Chấm công (Time & Attendance)
+   * Phần Nghỉ phép (Leave):
+      * leave_types: Danh mục các loại nghỉ phép.
+      * leave_balances: Theo dõi số dư phép (được hưởng, đã dùng, còn lại) của nhân viên theo năm.
+      * leave_requests: Lưu các đơn xin nghỉ phép và trạng thái (pending, approved...).
+   * Phần Chấm công (Attendance):
+      * work_shifts: Danh mục các ca làm việc (giờ vào, giờ ra).
+      * work_schedules: Bảng phân công, gán ca làm việc (shift_id) cho nhân viên (employee_id) theo ngày (work_date).
+      * attendance_records: Lưu dữ liệu chấm công thực tế (check_in_time, check_out_time).
+Nhóm 5: Quản lý Thiết lập Lương (Salary Configuration)
+   * salary_components: Danh mục các thành phần lương (thu nhập, khấu trừ, phụ cấp).
+   * employee_salaries: Gán các thành phần lương cố định và số tiền (amount) cho nhân viên theo ngày hiệu lực (effective_date).
+   * Các mối quan hệ (Foreign Keys) được định nghĩa rõ ràng để liên kết các bảng, ví dụ: employees.user_id -> users.id, employment_histories.employee_id -> employees.id, leave_requests.employee_id -> employees.id, v.v.
+
+
+3.1.1 Sơ đồ Usercase
+  
+
+
+
+Hình 1. Sơ đồ Usercase
+________________
+        
+3.2 Chi tiết liệt kê các bảng ERD
+* Bảng: users
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	name
+	VARCHAR(100)
+	
+
+	NOT NULL
+	
+
+	email
+	VARCHAR(120)
+	
+
+	NOT NULL, UNIQUE
+	
+
+	password
+	VARCHAR(255)
+	
+
+	NOT NULL
+	
+
+	role_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to roles(id)
+	remember_token
+	VARCHAR(100)
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: roles
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Role code
+	name
+	VARCHAR(50)
+	
+
+	NOT NULL
+	Role name
+	description
+	VARCHAR(255)
+	
+
+	
+
+	
+
+	permissions
+	JSON
+	
+
+	
+
+	Stores permission settings
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: departments
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Department code
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	Department name
+	manager_id
+	BIGINT
+	FK
+	
+
+	Links to employees(id)
+	parent_id
+	BIGINT
+	FK
+	
+
+	Links to llowance(id)
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: job_families
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Job family code
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	Job family name
+	description
+	VARCHAR(255)
+	
+
+	
+
+	
+
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: job_titles
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Job title code
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	Job title name
+	level
+	ENUM(‘entry’,’junior’,’senior’,’lead’,’manager’,’director’,’executive’)
+	
+
+	
+
+	Seniority level
+	job_family_id
+	BIGINT
+	FK
+	
+
+	Links to job_families(id)
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: employees
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Employee Code
+	user_id
+	BIGINT
+	FK
+	UNIQUE
+	Links to users(id)
+	full_name
+	VARCHAR(200)
+	
+
+	NOT NULL
+	
+
+	gender
+	ENUM(‘M’,’F’,’O’)
+	
+
+	
+
+	M=Male, F=Female, O=Other
+	birth_date
+	DATE
+	
+
+	
+
+	
+
+	personal_email
+	VARCHAR(120)
+	
+
+	
+
+	
+
+	phone
+	VARCHAR(20)
+	
+
+	
+
+	
+
+	contact_name
+	VARCHAR(100)
+	
+
+	
+
+	Emergency contact name
+	contact_phone
+	VARCHAR(20)
+	
+
+	
+
+	Emergency contact phone
+	id_card_no
+	VARCHAR(50)
+	
+
+	
+
+	National ID / Passport No.
+	id_issue_date
+	DATE
+	
+
+	
+
+	
+
+	id_issue_place
+	VARCHAR(100)
+	
+
+	
+
+	
+
+	tax_code
+	VARCHAR(50)
+	
+
+	
+
+	Personal Tax Code
+	social_insurance_no
+	VARCHAR(50)
+	
+
+	
+
+	Social Insurance Number
+	address
+	TEXT
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: employment_histories
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	department_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to llowance(id)
+	job_title_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to job_titles(id)
+	start_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	end_date
+	DATE
+	
+
+	
+
+	NULL = Currently active
+	salary
+	DECIMAL(12,2)
+	
+
+	
+
+	Base salary for this position
+	work_location
+	ENUM(‘head_office’,’branch_1’,’branch_2’,’remote’)
+	
+
+	
+
+	
+
+	employment_type
+	ENUM(‘full_time’,’part_time’,’contract’,’intern’)
+	
+
+	
+
+	
+
+	work_status
+	ENUM(‘active’,’probation’,’suspended’,’inactive’)
+	
+
+	
+
+	
+
+	reports_to
+	BIGINT
+	FK
+	
+
+	Links to employees(id)
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: leave_types
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	
+
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	e.g., Annual Leave, Sick Leave
+	category
+	ENUM(‘annual’,’sick’,’maternity’,’paternity’,’unpaid’,’other’)
+	
+
+	
+
+	
+
+	is_paid
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	max_days
+	SMALLINT
+	
+
+	NOT NULL
+	Max llowance per year
+	accrual_rate
+	DECIMAL(4,2)
+	
+
+	
+
+	Days earned per month
+	carry_over_days
+	SMALLINT
+	
+
+	
+
+	Max days carried to next year
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: leave_balances
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	leave_type_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to leave_types(id)
+	year
+	SMALLINT
+	
+
+	NOT NULL
+	e.g., 2024
+	total_entitled
+	DECIMAL(5,2)
+	
+
+	NOT NULL
+	Total days allowed
+	used
+	DECIMAL(5,2)
+	
+
+	NOT NULL
+	Days already taken
+	remaining
+	DECIMAL(5,2)
+	
+
+	NOT NULL
+	Days left
+	carried_over
+	DECIMAL(5,2)
+	
+
+	NOT NULL
+	Days from previous year
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: leave_requests
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	leave_type_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to leave_types(id)
+	start_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	end_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	total_days
+	DECIMAL(5,2)
+	
+
+	NOT NULL
+	
+
+	reason
+	TEXT
+	
+
+	
+
+	
+
+	status
+	ENUM(‘draft’,’pending’,’approved’,’rejected’,’cancelled’)
+	
+
+	NOT NULL
+	
+
+	approved_by
+	BIGINT
+	FK
+	
+
+	Links to users(id)
+	approved_at
+	DATETIME
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: work_shifts
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	Shift Code
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	e.g., Morning Shift
+	start_time
+	TIME
+	
+
+	NOT NULL
+	
+
+	end_time
+	TIME
+	
+
+	NOT NULL
+	
+
+	break_minutes
+	SMALLINT
+	
+
+	NOT NULL
+	Break duration in mins
+	total_hours
+	DECIMAL(4,2)
+	
+
+	
+
+	
+
+	is_default
+	BOOLEAN
+	
+
+	
+
+	
+
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: work_schedules
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	work_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	shift_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to work_shifts(id)
+	actual_start
+	DATETIME
+	
+
+	
+
+	Clock in time
+	actual_end
+	DATETIME
+	
+
+	
+
+	Clock out time
+	total_hours
+	DECIMAL(4,2)
+	
+
+	
+
+	Actual worked hours
+	overtime_hours
+	DECIMAL(4,2)
+	
+
+	
+
+	
+
+	status
+	ENUM(‘scheduled’,’present’,’absent’,’late’,’half_day’)
+	
+
+	
+
+	
+
+	notes
+	VARCHAR(255)
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+________________
+
+
+* Bảng: attendance_records
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	record_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	check_in
+	DATETIME
+	
+
+	
+
+	
+
+	check_out
+	DATETIME
+	
+
+	
+
+	
+
+	total_hours
+	DECIMAL(4,2)
+	
+
+	
+
+	
+
+	late_minutes
+	SMALLINT
+	
+
+	
+
+	
+
+	early_minutes
+	SMALLINT
+	
+
+	
+
+	
+
+	overtime_hours
+	DECIMAL(4,2)
+	
+
+	
+
+	
+
+	status
+	ENUM(‘present’,’absent’,’late’,’half_day’,’holiday’)
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+________________
+
+
+* Bảng: salary_components
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	code
+	VARCHAR(20)
+	
+
+	NOT NULL, UNIQUE
+	
+
+	name
+	VARCHAR(150)
+	
+
+	NOT NULL
+	
+
+	type
+	ENUM(‘earning’,’deduction’)
+	
+
+	NOT NULL
+	
+
+	category
+	ENUM(‘basic’,’allowance’,’bonus’,’tax’,’insurance’,’other’)
+	
+
+	NOT NULL
+	
+
+	is_taxable
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	is_active
+	BOOLEAN
+	
+
+	NOT NULL
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: employee_salaries
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	employee_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to employees(id)
+	component_id
+	BIGINT
+	FK
+	NOT NULL
+	Links to salary_components(id)
+	amount
+	DECIMAL(12,2)
+	
+
+	NOT NULL
+	
+
+	effective_date
+	DATE
+	
+
+	NOT NULL
+	
+
+	end_date
+	DATE
+	
+
+	
+
+	
+
+	created_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	updated_at
+	TIMESTAMP
+	
+
+	
+
+	
+
+	
+
+* Bảng: activity_logs
+Field Name
+	Data Type
+	Key
+	Constraint
+	Notes
+	id
+	BIGINT
+	PK
+	NOT NULL
+	
+
+	table_name
+	VARCHAR(100)
+	
+
+	NOT NULL
+	
+
+	record_id
+	BIGINT
+	
+
+	NOT NULL
+	
+
+	action
+	ENUM(‘create’,’update’,’delete’,’view’)
+	
+
+	NOT NULL
+	
+
+	performed_by
+	BIGINT
+	FK
+	
+
+	Links to users(id)
+	timestamp
+	DATETIME
+	
+
+	NOT NULL
+	
+
+	old_values
+	JSON
+	
+
+	
+
+	
+
+	new_values
+	JSON
+	
+
+	
+
+	
+
+	ip_address
+	VARCHAR(45)
+	
+
+	
+
+	
+
+	user_agent
+	VARCHAR(255)
+	
+
+	
+
+	
+
+	
+
+
+3.2.1 Sơ đồ quan hệ ERD
+  
+        
+
+
+Hình 2. Sơ đồ quan hệ ERD
+3.2.2 Giải thích các thuộc tính
+* Bảng departments - Phòng ban
+* Lưu trữ thông tin các phòng ban trong công ty
+Ví dụ: Phòng Nhân sự, Phòng Kế toán, Phòng Kinh doanh
+* Bảng job_families - Nhóm ngành nghề
+* Phân loại các chức danh theo nhóm ngành nghề
+Ví dụ: Nhóm IT, Nhóm Tài chính, Nhóm Kinh doanh
+* Bảng job_titles - Chức danh công việc
+* Lưu trữ các chức danh/chức vụ trong công ty
+Ví dụ: Nhân viên Kế toán, Trưởng phòng, Giám đốc
+* Bảng users - Người dùng hệ thống
+* Quản lý tài khoản đăng nhập vào hệ thống HRM
+* Mỗi user có thể là admin, HR hoặc employee
+* Bảng roles - Vai trò/Phân quyền
+* Định nghĩa các vai trò và quyền hạn trong hệ thống
+Ví dụ: Admin có toàn quyền, HR được duyệt đơn nghỉ phép
+* Bảng employees - Nhân viên
+* Lưu trữ thông tin cá nhân của nhân viên
+* Tách biệt với thông tin đăng nhập (users)
+* Bảng employment_histories - Lịch sử làm việc
+* Theo dõi quá trình công tác của nhân viên
+* Ghi lại các thay đổi về phòng ban, chức vụ, lương
+* Bảng work_shifts - Ca làm việc
+* Định nghĩa các ca làm trong ngày
+Ví dụ: Ca sáng (8h-12h), Ca chiều (13h-17h)
+* Bảng work_schedules - Lịch làm việc
+* Lập lịch làm việc cho từng nhân viên theo ngày
+* Xác định nhân viên nào làm ca nào vào ngày nào
+* Bảng attendance_records - Bản ghi chấm công
+* Ghi lại thời gian chấm công thực tế
+* Theo dõi giờ vào, giờ ra, làm thêm giờ
+* Bảng leave_types - Loại nghỉ phép
+* Định nghĩa các loại nghỉ phép
+Ví dụ: Nghỉ phép năm, Nghỉ ốm, Nghỉ không lương
+* Bảng leave_balances - Số dư ngày nghỉ
+* Theo dõi số ngày nghỉ còn lại của từng nhân viên
+* Cập nhật sau mỗi lần nghỉ phép
+* Bảng leave_requests - Đơn xin nghỉ phép
+* Quản lý các đơn xin nghỉ phép của nhân viên
+* Theo dõi trạng thái duyệt đơn
+* Bảng salary_components - Thành phần lương
+* Định nghĩa các khoản trong bảng lương
+Ví dụ: Lương cơ bản, Phụ cấp, Bảo hiểm, Thuế
+* Bảng employee_salaries - Lương nhân viên
+* Lưu trữ thông tin lương cụ thể của từng nhân viên
+* Có hiệu lực theo thời gian
+* Bảng activity_logs - Nhật ký hoạt động
+* Ghi lại mọi thao tác trên hệ thống
+* Phục vụ cho việc audit và khắc phục sự cố
+
+
+3.3 Sơ đồ chi tiết thực thể
+  
+
+
+
+Hình 3. Sơ đồ chi tiết thực thể
+3.4. Sơ đồ trang (Sitemap)
+  
+
+
+
+Hình 4. Sơ đồ trang
+3.5. Mô tả các trang và luồng liên kết
+Phần này mô tả luồng đi (flow) của người dùng khi sử dụng website, giải thích cách họ di chuyển từ trang này sang trang khác thông qua các hành động tương tác với trang web.
+
+
+3.5.1. Luồng của Quản trị viên (Admin)
+1. Luồng Đăng nhập và Điều hướng chính
+* Bắt đầu: Admin truy cập vào [Trang Đăng nhập].
+* Hành động: Admin nhập Tên đăng nhập và Mật khẩu.
+* Kết quả (Thành công): Hệ thống xác thực thành công và chuyển hướng Admin đến [Trang Dashboard (Tổng quan)]. Trang này là trung tâm điều phối, hiển thị các thống kê nhanh và một thanh menu (sidebar) cố định ở bên trái chứa các liên kết đến tất cả các trang quản lý khác.
+* Kết quả (Thất bại): Hệ thống hiển thị thông báo lỗi ngay tại [Trang Đăng nhập].
+2. Luồng Quản lý Phòng ban
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn vào mục "Quản lý Phòng ban" trên thanh menu.
+* Hệ thống chuyển đến [Trang Danh sách Phòng ban]: Trang này hiển thị một bảng (table) liệt kê tất cả các phòng ban hiện có, cùng với các nút chức năng (Thêm mới, Sửa, Xóa).
+* Trên [Trang Danh sách Phòng ban]:
+   * Hành động (Thêm): Admin nhấn nút "Thêm mới".
+   * Kết quả: Hệ thống hiển thị [Trang/Pop-up Thêm mới Phòng ban] (một form để nhập Tên phòng ban, Mô tả...). Admin nhấn "Lưu", hệ thống xử lý và tải lại [Trang Danh sách Phòng ban] với dữ liệu mới.
+   * Hành động (Sửa): Admin nhấn nút "Sửa" ở một hàng phòng ban cụ thể.
+   * Kết quả: Hệ thống hiển thị [Trang/Pop-up Chỉnh sửa Phòng ban], form này được điền sẵn thông tin của phòng ban đó. Admin sửa và nhấn "Lưu", hệ thống xử lý và tải lại [Trang Danh sách Phòng ban].
+3. Luồng Quản lý Chức vụ
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn vào mục "Quản lý Chức vụ" trên menu.
+* Hệ thống chuyển đến [Trang Danh sách Chức vụ].
+* Trên [Trang Danh sách Chức vụ]: Admin có thể "Thêm mới" (dẫn đến [Trang/Pop-up Thêm mới Chức vụ]) hoặc "Sửa" (dẫn đến [Trang/Pop-up Chỉnh sửa Chức vụ] với dữ liệu cũ).
+4. Luồng Quản lý Nhân viên
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn vào mục "Quản lý Nhân viên" trên menu.
+* Hệ thống chuyển đến [Trang Danh sách Nhân viên]: Hiển thị bảng danh sách nhân viên, có chức năng tìm kiếm và lọc (theo phòng ban, chức vụ).
+* Trên [Trang Danh sách Nhân viên]:
+   * Hành động (Thêm): Admin nhấn nút "Thêm mới Nhân viên".
+   * Kết quả: Hệ thống chuyển đến [Trang Thêm mới Nhân viên]. Đây là một form lớn yêu cầu nhập nhiều thông tin (Họ tên, ngày sinh, địa chỉ...) và có các ô chọn (dropdown) để chọn Phòng ban, Chức vụ.
+   * Hành động (Sửa): Admin nhấn nút "Sửa" ở một hàng nhân viên.
+   * Kết quả: Hệ thống chuyển đến [Trang Chỉnh sửa Thông tin Nhân viên], form này tải sẵn toàn bộ thông tin của nhân viên đó.
+   * Hành động (Xem): Admin nhấn vào Tên của nhân viên.
+   * Kết quả: Hệ thống chuyển đến [Trang Xem Chi tiết Nhân viên]. Trang này hiển thị tất cả thông tin của nhân viên, bao gồm cả thông tin hợp đồng, lịch sử chấm công, lương.
+5. Luồng Quản lý Hợp đồng
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn vào mục "Quản lý Hợp đồng" trên menu.
+* Hệ thống chuyển đến [Trang Danh sách Hợp đồng]: Liệt kê các hợp đồng (của nhân viên nào, loại hợp đồng, ngày hết hạn...).
+* Trên [Trang Danh sách Hợp đồng]:
+   * Hành động (Tạo mới): Admin nhấn nút "Tạo mới Hợp đồng".
+   * Kết quả: Hệ thống chuyển đến [Trang Tạo mới Hợp đồng]. Trang này có một ô tìm kiếm/chọn nhân viên và các trường để nhập thông tin hợp đồng (loại HĐ, ngày ký, ngày hết hạn, lương cơ bản...).
+
+
+6. Luồng Quản lý Chấm công và Lương
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn "Quản lý Chấm công".
+* Hệ thống chuyển đến [Trang Bảng chấm công tổng]: Admin chọn tháng và phòng ban để xem.
+* Trên [Trang Bảng chấm công tổng]: Admin có thể nhấn vào một ô để [Trang/Pop-up Cập nhật/Chỉnh sửa] ngày công cho một nhân viên cụ thể (ví dụ: cập nhật phép, quên chấm công).
+* Từ [Trang Dashboard (Tổng quan)]: Admin nhấn "Quản lý Lương".
+* Hệ thống chuyển đến [Trang Bảng lương tổng]: Admin chọn tháng. Hệ thống sẽ tự động tính toán lương dựa trên dữ liệu từ Bảng Chấm công và Hợp đồng.
+* Trên [Trang Bảng lương tổng]: Admin nhấn "Xem chi tiết" của một nhân viên.
+* Kết quả: Hệ thống chuyển đến [Trang Xem chi tiết / In Phiếu lương], hiển thị rõ các khoản (lương cơ bản, phụ cấp, trừ bảo hiểm, thưởng, phạt, thực nhận).
+7. Luồng Đổi mật khẩu
+* Từ bất kỳ trang nào: Admin nhấn vào Tên tài khoản của mình (thường ở góc trên bên phải).
+* Hệ thống hiển thị một menu thả xuống. Admin chọn "Đổi mật khẩu".
+* Hệ thống chuyển đến [Trang Đổi mật khẩu].
+
+
+3.5.2. Luồng của Nhân viên (Employee)
+* Bắt đầu: Nhân viên truy cập [Trang Đăng nhập].
+* Hành động: Nhân viên nhập Tên đăng nhập và Mật khẩu (do Admin cấp).
+* Kết quả (Thành công): Hệ thống xác thực và chuyển hướng Nhân viên đến [Trang Thông tin cá nhân]. Đây là trang chủ của nhân viên, hiển thị thông tin cơ bản của họ và một thanh menu (sidebar) đơn giản hơn của Admin.
+* Từ [Trang Thông tin cá nhân]:
+* Nhân viên nhấn vào mục "Xem Bảng công" trên menu. Hệ thống chuyển đến [Trang Xem Bảng công] (trang này chỉ hiển thị dữ liệu chấm công của chính nhân viên đó, không xem được của người khác).
+* Nhân viên nhấn vào mục "Xem Phiếu lương" trên menu. Hệ thống chuyển đến [Trang Xem Phiếu lương] (chỉ xem được phiếu lương của mình).
+* Nhân viên nhấn vào "Đổi mật khẩu". Hệ thống chuyển đến [Trang Đổi mật khẩu].
+
+
+________________
+
+
+Dự án 1 – Thiết kế trang web

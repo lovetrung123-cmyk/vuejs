@@ -1,0 +1,51 @@
+📋 Task: Fix Component Imports in 7 New View Files
+Problem
+All 7 newly created view files have incorrect component imports. They reference a non-existent Base/ folder.
+
+Solution Required
+Fix the import paths in these 7 files by removing /Base from the import paths.
+
+Changes Needed:
+File 1: client/src/views/JobTitles.vue
+
+Change: import BaseButton from '../components/Base/BaseButton.vue';
+To: import BaseButton from '../components/BaseButton.vue';
+Change: import BaseCard from '../components/Base/BaseCard.vue';
+To: import BaseCard from '../components/BaseCard.vue';
+Change: import BaseTable from '../components/Base/BaseTable.vue';
+To: import BaseTable from '../components/BaseTable.vue';
+Change: import BaseModal from '../components/Base/BaseModal.vue';
+To: import BaseModal from '../components/BaseModal.vue';
+Change: import BaseInput from '../components/Base/BaseInput.vue';
+To: import BaseInput from '../components/BaseInput.vue';
+Change: import BaseSelect from '../components/Base/BaseSelect.vue';
+To: import BaseSelect from '../components/BaseSelect.vue';
+Change: import BaseBadge from '../components/Base/BaseBadge.vue';
+To: import BaseBadge from '../components/BaseBadge.vue';
+File 2: client/src/views/JobFamilies.vue
+
+Same changes as above (all 6 imports need /Base removed)
+File 3: client/src/views/EmploymentHistory.vue
+
+Same changes as above (all 6 imports need /Base removed)
+File 4: client/src/views/WorkShifts.vue
+
+Same changes as above (all 6 imports need /Base removed)
+File 5: client/src/views/WorkSchedules.vue
+
+Same changes as above (all 6 imports need /Base removed)
+File 6: client/src/views/SalaryComponents.vue
+
+Same changes as above (all 6 imports need /Base removed)
+File 7: client/src/views/EmployeePortal.vue
+
+Change: import BaseButton from '../components/Base/BaseButton.vue';
+To: import BaseButton from '../components/BaseButton.vue';
+Change: import BaseCard from '../components/Base/BaseCard.vue';
+To: import BaseCard from '../components/BaseCard.vue';
+Change: import BaseTable from '../components/Base/BaseTable.vue';
+To: import BaseTable from '../components/BaseTable.vue';
+After Fixing:
+Restart the application workflow
+Verify all 7 new pages appear in the sidebar menu
+Test that pages can be accessed without errors

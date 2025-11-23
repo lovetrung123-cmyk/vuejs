@@ -1,0 +1,47 @@
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--mau-chinh) 0%, var(--mau-chinh-dam) 100%);
+  padding: 20px;
+}
+
+.login-box {
+  background-color: var(--mau-nen);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  color: var(--mau-chu-phu);
+  margin-bottom: 0;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.forgot-password {
+  color: var(--mau-chinh);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
