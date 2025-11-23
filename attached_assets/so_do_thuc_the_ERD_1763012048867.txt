@@ -1,0 +1,275 @@
+@startuml
+' HRM — Chen-like ERD tieng Viet khong dau
+left to right direction
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+
+' Cosmetic styles
+skinparam rectangle {
+  BorderColor Black
+  BackgroundColor #F0F8FF
+}
+skinparam usecase {
+  BorderColor #333333
+  BackgroundColor #FFFFE0
+  FontSize 12
+}
+
+' -------------------
+' ENTITIES + ATTRIBUTES
+' -------------------
+
+rectangle "nguoi_dung\n(id PK)" as E_users
+usecase "id (PK)" as A_users_id
+usecase "ten" as A_users_name
+usecase "email" as A_users_email
+usecase "vai_tro_id (FK)" as A_users_role
+
+A_users_id   -down- E_users
+A_users_name -down- E_users
+A_users_email-down- E_users
+A_users_role -down- E_users
+
+rectangle "vai_tro\n(id PK)" as E_roles
+usecase "id (PK)" as A_roles_id
+usecase "ma" as A_roles_code
+usecase "ten" as A_roles_name
+
+A_roles_id -down- E_roles
+A_roles_code -down- E_roles
+A_roles_name -down- E_roles
+
+rectangle "phong_ban\n(id PK)" as E_departments
+usecase "id (PK)" as A_dept_id
+usecase "ma" as A_dept_code
+usecase "ten" as A_dept_name
+usecase "quan_ly_id (FK)" as A_dept_manager
+usecase "cha_id (FK)" as A_dept_parent
+
+A_dept_id -down- E_departments
+A_dept_code -down- E_departments
+A_dept_name -down- E_departments
+A_dept_manager -down- E_departments
+A_dept_parent -down- E_departments
+
+rectangle "chuc_danh\n(id PK)" as E_job_titles
+usecase "id (PK)" as A_job_id
+usecase "ma" as A_job_code
+usecase "ten" as A_job_name
+usecase "nhom_cv_id (FK)" as A_job_family
+
+A_job_id -down- E_job_titles
+A_job_code -down- E_job_titles
+A_job_name -down- E_job_titles
+A_job_family -down- E_job_titles
+
+rectangle "nhom_cong_viec\n(id PK)" as E_job_families
+usecase "id (PK)" as A_jf_id
+usecase "ma" as A_jf_code
+usecase "ten" as A_jf_name
+
+A_jf_id -down- E_job_families
+A_jf_code -down- E_job_families
+A_jf_name -down- E_job_families
+
+rectangle "nhan_vien\n(id PK)" as E_employees
+usecase "id (PK)" as A_emp_id
+usecase "nguoi_dung_id (FK)" as A_emp_user
+usecase "ma" as A_emp_code
+usecase "ho_ten" as A_emp_name
+
+A_emp_id -down- E_employees
+A_emp_user -down- E_employees
+A_emp_code -down- E_employees
+A_emp_name -down- E_employees
+
+rectangle "lich_su_lam_viec\n(id PK)" as E_employment_histories
+usecase "id (PK)" as A_eh_id
+usecase "nhan_vien_id (FK)" as A_eh_emp
+usecase "phong_ban_id (FK)" as A_eh_dept
+usecase "chuc_danh_id (FK)" as A_eh_job
+
+A_eh_id -down- E_employment_histories
+A_eh_emp -down- E_employment_histories
+A_eh_dept -down- E_employment_histories
+A_eh_job -down- E_employment_histories
+
+rectangle "loai_nghi_phep\n(id PK)" as E_leave_types
+usecase "id (PK)" as A_lt_id
+usecase "ma" as A_lt_code
+usecase "ten" as A_lt_name
+
+A_lt_id -down- E_leave_types
+A_lt_code -down- E_leave_types
+A_lt_name -down- E_leave_types
+
+rectangle "so_du_nghi_phep\n(id PK)" as E_leave_balances
+usecase "id (PK)" as A_lb_id
+usecase "nhan_vien_id (FK)" as A_lb_emp
+usecase "loai_nghi_id (FK)" as A_lb_lt
+usecase "nam" as A_lb_year
+
+A_lb_id -down- E_leave_balances
+A_lb_emp -down- E_leave_balances
+A_lb_lt -down- E_leave_balances
+A_lb_year -down- E_leave_balances
+
+rectangle "yeu_cau_nghi_phep\n(id PK)" as E_leave_requests
+usecase "id (PK)" as A_lr_id
+usecase "nhan_vien_id (FK)" as A_lr_emp
+usecase "loai_nghi_id (FK)" as A_lr_lt
+usecase "trang_thai" as A_lr_status
+
+A_lr_id -down- E_leave_requests
+A_lr_emp -down- E_leave_requests
+A_lr_lt -down- E_leave_requests
+A_lr_status -down- E_leave_requests
+
+rectangle "ca_lam\n(id PK)" as E_work_shifts
+usecase "id (PK)" as A_ws_id
+usecase "ma" as A_ws_code
+usecase "gio_bat_dau" as A_ws_start
+
+A_ws_id -down- E_work_shifts
+A_ws_code -down- E_work_shifts
+A_ws_start -down- E_work_shifts
+
+rectangle "lich_lam_viec\n(id PK)" as E_work_schedules
+usecase "id (PK)" as A_wsc_id
+usecase "nhan_vien_id (FK)" as A_wsc_emp
+usecase "ca_id (FK)" as A_wsc_shift
+usecase "ngay_lam" as A_wsc_date
+
+A_wsc_id -down- E_work_schedules
+A_wsc_emp -down- E_work_schedules
+A_wsc_shift -down- E_work_schedules
+A_wsc_date -down- E_work_schedules
+
+rectangle "bao_cao_cham_cong\n(id PK)" as E_attendance
+usecase "id (PK)" as A_att_id
+usecase "nhan_vien_id (FK)" as A_att_emp
+usecase "ngay_ghi" as A_att_date
+
+A_att_id -down- E_attendance
+A_att_emp -down- E_attendance
+A_att_date -down- E_attendance
+
+rectangle "thanh_phan_luong\n(id PK)" as E_salary_components
+usecase "id (PK)" as A_sc_id
+usecase "ma" as A_sc_code
+usecase "ten" as A_sc_name
+
+A_sc_id -down- E_salary_components
+A_sc_code -down- E_salary_components
+A_sc_name -down- E_salary_components
+
+rectangle "luong_nhan_vien\n(id PK)" as E_employee_salaries
+usecase "id (PK)" as A_es_id
+usecase "nhan_vien_id (FK)" as A_es_emp
+usecase "thanh_phan_luong_id (FK)" as A_es_sc
+
+A_es_id -down- E_employee_salaries
+A_es_emp -down- E_employee_salaries
+A_es_sc -down- E_employee_salaries
+
+rectangle "nhat_ky_hoat_dong\n(id PK)" as E_activity_logs
+usecase "id (PK)" as A_al_id
+usecase "nguoi_thuc_hien_id (FK)" as A_al_user
+usecase "hanh_dong" as A_al_action
+
+A_al_id -down- E_activity_logs
+A_al_user -down- E_activity_logs
+A_al_action -down- E_activity_logs
+
+' -------------------
+' QUAN HE GIUA CAC BANG
+' -------------------
+
+rectangle "quan_he_vai_tro" as R_user_roles #FFEECC
+E_roles "1" --> "N" R_user_roles
+R_user_roles "1" --> "N" E_users
+
+rectangle "quan_ly_phong_ban" as R_dept_manager #FFEECC
+E_departments "0..1" --> "1" R_dept_manager
+R_dept_manager "1" --> "0..N" E_employees
+
+rectangle "phong_ban_cha" as R_dept_parent #FFEECC
+E_departments "0..1" --> "1" R_dept_parent
+R_dept_parent "1" --> "0..N" E_departments
+
+rectangle "nhom_cong_viec_rel" as R_jobfamily #FFEECC
+E_job_families "1" --> "N" R_jobfamily
+R_jobfamily "1" --> "N" E_job_titles
+
+rectangle "nhan_vien_nguoi_dung" as R_employee_user #FFEECC
+E_users "1" --> "0..1" R_employee_user
+R_employee_user "1" --> "0..1" E_employees
+
+rectangle "lich_su_nhan_vien" as R_emp_history #FFEECC
+E_employees "1" --> "N" R_emp_history
+R_emp_history "1" --> "N" E_employment_histories
+
+rectangle "ls_phong_ban" as R_eh_dept #FFEECC
+E_departments "1" --> "N" R_eh_dept
+R_eh_dept "1" --> "N" E_employment_histories
+
+rectangle "ls_chuc_danh" as R_eh_job #FFEECC
+E_job_titles "1" --> "N" R_eh_job
+R_eh_job "1" --> "N" E_employment_histories
+
+rectangle "sd_nhan_vien" as R_lb_emp #FFEECC
+E_employees "1" --> "N" R_lb_emp
+R_lb_emp "1" --> "N" E_leave_balances
+
+rectangle "sd_loai_nghi" as R_lb_type #FFEECC
+E_leave_types "1" --> "N" R_lb_type
+R_lb_type "1" --> "N" E_leave_balances
+
+rectangle "yc_nhan_vien" as R_lr_emp #FFEECC
+E_employees "1" --> "N" R_lr_emp
+R_lr_emp "1" --> "N" E_leave_requests
+
+rectangle "yc_loai_nghi" as R_lr_type #FFEECC
+E_leave_types "1" --> "N" R_lr_type
+R_lr_type "1" --> "N" E_leave_requests
+
+rectangle "yc_duyet" as R_lr_app #FFEECC
+E_users "0..1" --> "N" R_lr_app
+R_lr_app "1" --> "N" E_leave_requests
+
+rectangle "ca_lam_viec" as R_ws_sched #FFEECC
+E_work_shifts "1" --> "N" R_ws_sched
+R_ws_sched "1" --> "N" E_work_schedules
+
+rectangle "lich_nhan_vien" as R_ws_emp #FFEECC
+E_employees "1" --> "N" R_ws_emp
+R_ws_emp "1" --> "N" E_work_schedules
+
+rectangle "cham_cong_nhan_vien" as R_att_emp #FFEECC
+E_employees "1" --> "N" R_att_emp
+R_att_emp "1" --> "N" E_attendance
+
+rectangle "thanh_phan_luong_rel" as R_sal_comp #FFEECC
+E_salary_components "1" --> "N" R_sal_comp
+R_sal_comp "1" --> "N" E_employee_salaries
+
+rectangle "luong_nhan_vien_rel" as R_es_emp #FFEECC
+E_employees "1" --> "N" R_es_emp
+R_es_emp "1" --> "N" E_employee_salaries
+
+rectangle "nhat_ky_nguoi_dung" as R_act_user #FFEECC
+E_users "0..1" --> "N" R_act_user
+R_act_user "1" --> "N" E_activity_logs
+
+' -------------------
+' CAN CHINH VI TRI
+' -------------------
+E_users -[hidden]- E_roles
+E_roles -[hidden]- E_departments
+E_employees -[hidden]- E_job_titles
+E_job_families -[hidden]- E_employment_histories
+E_leave_types -[hidden]- E_leave_balances
+E_leave_requests -[hidden]- E_work_schedules
+E_work_shifts -[hidden]- E_attendance
+
+@enduml

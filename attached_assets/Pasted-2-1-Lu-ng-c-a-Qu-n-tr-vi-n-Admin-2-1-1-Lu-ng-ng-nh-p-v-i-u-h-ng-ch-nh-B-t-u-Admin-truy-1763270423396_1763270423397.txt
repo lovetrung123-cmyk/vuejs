@@ -1,0 +1,107 @@
+2.1. Luồng của Quản trị viên (Admin)
+2.1.1. Luồng Đăng nhập và Điều hướng chính
+
+Bắt đầu: Admin truy cập vào [Trang Đăng nhập].
+
+Hành động: Admin nhập Tên đăng nhập và Mật khẩu.
+
+Kết quả (Thành công): Hệ thống xác thực thành công và chuyển hướng Admin đến [Trang 1. Dashboard (Tổng quan)]. Trang này là trung tâm điều phối, hiển thị các thống kê nhanh và một thanh menu (sidebar) cố định ở bên trái chứa các liên kết đến tất cả các trang quản lý khác.
+
+Kết quả (Thất bại): Hệ thống hiển thị thông báo lỗi ngay tại [Trang Đăng nhập].
+
+2.1.2. Luồng Quản lý Phòng ban (Mục 2 trên Sitemap)
+
+Từ [Trang 1. Dashboard]: Admin nhấn vào mục "Quản lý Phòng ban" trên thanh menu.
+
+Hệ thống chuyển đến [Trang 2.1. Danh sách Phòng ban]: Trang này hiển thị một bảng (table) liệt kê tất cả các phòng ban hiện có, cùng với các nút chức năng (Thêm mới, Sửa, Xóa).
+
+Trên [Trang 2.1]:
+
+Hành động (Thêm): Admin nhấn nút "Thêm mới".
+
+Kết quả: Hệ thống hiển thị [Trang/Pop-up 2.2. Thêm mới Phòng ban] (một form để nhập Tên phòng ban, Mô tả...). Admin nhấn "Lưu", hệ thống xử lý và tải lại [Trang 2.1] với dữ liệu mới.
+
+Hành động (Sửa): Admin nhấn nút "Sửa" ở một hàng phòng ban cụ thể.
+
+Kết quả: Hệ thống hiển thị [Trang/Pop-up 2.2. Chỉnh sửa Phòng ban], form này được điền sẵn thông tin của phòng ban đó. Admin sửa và nhấn "Lưu", hệ thống xử lý và tải lại [Trang 2.1].
+
+2.1.3. Luồng Quản lý Chức vụ (Mục 3 trên Sitemap)
+
+(Luồng này hoạt động y hệt như Quản lý Phòng ban).
+
+Từ [Trang 1. Dashboard]: Admin nhấn vào mục "Quản lý Chức vụ" trên menu.
+
+Hệ thống chuyển đến [Trang 3.1. Danh sách Chức vụ].
+
+Trên [Trang 3.1]: Admin có thể "Thêm mới" (dẫn đến [Trang 3.2]) hoặc "Sửa" (dẫn đến [Trang 3.2] với dữ liệu cũ).
+
+2.1.4. Luồng Quản lý Nhân viên (Mục 4 trên Sitemap - Luồng phức tạp)
+
+Từ [Trang 1. Dashboard]: Admin nhấn vào mục "Quản lý Nhân viên" trên menu.
+
+Hệ thống chuyển đến [Trang 4.1. Danh sách Nhân viên]: Hiển thị bảng danh sách nhân viên, có chức năng tìm kiếm và lọc (theo phòng ban, chức vụ).
+
+Trên [Trang 4.1]:
+
+Hành động (Thêm): Admin nhấn nút "Thêm mới Nhân viên".
+
+Kết quả: Hệ thống chuyển đến [Trang 4.2. Thêm mới Nhân viên]. Đây là một form lớn yêu cầu nhập nhiều thông tin (Họ tên, ngày sinh, địa chỉ...) và có các ô chọn (dropdown) để chọn Phòng ban, Chức vụ (dữ liệu lấy từ Mục 2 và 3).
+
+Hành động (Sửa): Admin nhấn nút "Sửa" ở một hàng nhân viên.
+
+Kết quả: Hệ thống chuyển đến [Trang 4.3. Chỉnh sửa Thông tin], form này tải sẵn toàn bộ thông tin của nhân viên đó.
+
+Hành động (Xem): Admin nhấn vào Tên của nhân viên.
+
+Kết quả: Hệ thống chuyển đến [Trang 4.4. Xem Chi tiết Nhân viên]. Trang này hiển thị tất cả thông tin của nhân viên, bao gồm cả thông tin hợp đồng, lịch sử chấm công, lương (các thông tin liên kết từ bảng khác).
+
+2.1.5. Luồng Quản lý Hợp đồng (Mục 5 trên Sitemap)
+
+Từ [Trang 1. Dashboard]: Admin nhấn vào mục "Quản lý Hợp đồng" trên menu.
+
+Hệ thống chuyển đến [Trang 5.1. Danh sách Hợp đồng]: Liệt kê các hợp đồng (của nhân viên nào, loại hợp đồng, ngày hết hạn...).
+
+Trên [Trang 5.1]:
+
+Hành động (Tạo mới): Admin nhấn nút "Tạo mới Hợp đồng".
+
+Kết quả: Hệ thống chuyển đến [Trang 5.2. Tạo mới Hợp đồng]. Trang này có một ô tìm kiếm/chọn nhân viên (liên kết đến Mục 4) và các trường để nhập thông tin hợp đồng (loại HĐ, ngày ký, ngày hết hạn, lương cơ bản...).
+
+2.1.6. Luồng Quản lý Chấm công và Lương (Mục 6, 7)
+
+Từ [Trang 1. Dashboard]: Admin nhấn "Quản lý Chấm công".
+
+Hệ thống chuyển đến [Trang 6.1. Bảng chấm công tổng]: Admin chọn tháng và phòng ban để xem.
+
+Trên [Trang 6.1]: Admin có thể nhấn vào một ô để [Trang 6.2. Cập nhật/Chỉnh sửa] ngày công cho một nhân viên cụ thể (ví dụ: cập nhật phép, quên chấm công).
+
+Từ [Trang 1. Dashboard]: Admin nhấn "Quản lý Lương".
+
+Hệ thống chuyển đến [Trang 7.1. Bảng lương tổng]: Admin chọn tháng. Hệ thống sẽ tự động tính toán lương dựa trên dữ liệu từ Bảng Chấm công (Mục 6) và Hợp đồng (Mục 5).
+
+Trên [Trang 7.1]: Admin nhấn "Xem chi tiết" của một nhân viên.
+
+Kết quả: Hệ thống chuyển đến [Trang 7.2. Xem chi tiết / In Phiếu lương], hiển thị rõ các khoản (lương cơ bản, phụ cấp, trừ bảo hiểm, thưởng, phạt, thực nhận).
+
+2.1.7. Luồng Đổi mật khẩu (Mục 8)
+
+Từ bất kỳ trang nào: Admin nhấn vào Tên tài khoản của mình (thường ở góc trên bên phải).
+
+Hệ thống hiển thị một menu thả xuống. Admin chọn "Đổi mật khẩu".
+
+Hệ thống chuyển đến [Trang 8.1. Đổi mật khẩu].
+
+2.2. Luồng của Nhân viên (Employee)
+Bắt đầu: Nhân viên truy cập [Trang Đăng nhập].
+
+Hành động: Nhân viên nhập Tên đăng nhập và Mật khẩu (do Admin cấp).
+
+Kết quả (Thành công): Hệ thống xác thực và chuyển hướng Nhân viên đến [Trang 1. Thông tin cá nhân]. Đây là trang chủ của nhân viên, hiển thị thông tin cơ bản của họ và một thanh menu (sidebar) đơn giản hơn của Admin.
+
+Từ [Trang 1. Thông tin cá nhân]:
+
+Nhân viên nhấn vào mục "Xem Bảng công" trên menu. Hệ thống chuyển đến [Trang 2. Xem Bảng công] (trang này chỉ hiển thị dữ liệu chấm công của chính nhân viên đó, không xem được của người khác).
+
+Nhân viên nhấn vào mục "Xem Phiếu lương" trên menu. Hệ thống chuyển đến [Trang 3. Xem Phiếu lương] (chỉ xem được phiếu lương của mình).
+
+Nhân viên nhấn vào "Đổi mật khẩu". Hệ thống chuyển đến [Trang 4. Đổi mật khẩu].

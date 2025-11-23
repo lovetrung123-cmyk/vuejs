@@ -1,0 +1,332 @@
+// HRM v1 — Database DDL for dbdiagram.io - 3NF Compliant
+
+Table users {
+  id bigint [primary key, increment]
+  name varchar(100) [not null]
+  email varchar(120) [not null, unique]
+  password varchar(255) [not null]
+  role_id bigint [not null]
+  remember_token varchar(100)
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    email [unique]
+    role_id
+  }
+}
+
+Table roles {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(50) [not null]
+  description varchar(255)
+  permissions json
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+  }
+}
+
+Table departments {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  manager_id bigint
+  parent_id bigint
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+    manager_id
+    parent_id
+  }
+}
+
+Table job_titles {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  job_level enum('entry','junior','senior','lead','manager','director','executive')
+  job_family_id bigint
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+    job_family_id
+  }
+}
+
+Table job_families {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  description varchar(255)
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+  }
+}
+
+Table employees {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  user_id bigint [unique]
+  full_name varchar(200) [not null]
+  gender enum('M','F','O')
+  dob date
+  personal_email varchar(120)
+  personal_phone varchar(20)
+  emergency_contact_name varchar(100)
+  emergency_contact_phone varchar(20)
+  id_number varchar(50)
+  id_issue_date date
+  id_issue_place varchar(100)
+  tax_number varchar(50)
+  insurance_number varchar(50)
+  address text
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+    user_id [unique]
+    tax_number [unique]
+    insurance_number [unique]
+  }
+}
+
+Table employment_histories {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  department_id bigint [not null]
+  job_title_id bigint [not null]
+  start_date date [not null]
+  end_date date
+  salary decimal(12,2)
+  work_location enum('head_office','branch_1','branch_2','remote')
+  employment_type enum('full_time','part_time','contract','intern')
+  employment_status enum('active','probation','suspended','inactive')
+  report_to bigint
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    employee_id
+    department_id
+    job_title_id
+    (employee_id, start_date)
+  }
+}
+
+Table leave_types {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  category enum('annual','sick','maternity','paternity','unpaid','other')
+  paid boolean [default: true]
+  max_days smallint [default: 12]
+  accrual_rate decimal(4,2)
+  carry_over_days smallint [default: 0]
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+  }
+}
+
+Table leave_balances {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  leave_type_id bigint [not null]
+  year smallint [not null]
+  total_entitled decimal(5,2) [not null]
+  used decimal(5,2) [default: 0]
+  remaining decimal(5,2) [default: 0]
+  carried_over decimal(5,2) [default: 0]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    (employee_id, leave_type_id, year) [unique]
+    employee_id
+    leave_type_id
+  }
+}
+
+Table leave_requests {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  leave_type_id bigint [not null]
+  start_date date [not null]
+  end_date date [not null]
+  total_days decimal(5,2) [not null]
+  reason text
+  status enum('draft','pending','approved','rejected','cancelled') [default: 'draft']
+  approved_by bigint
+  approved_at datetime
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    employee_id
+    leave_type_id
+    status
+    (start_date, end_date)
+  }
+}
+
+Table work_shifts {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  start_time time [not null]
+  end_time time [not null]
+  break_minutes smallint [default: 0]
+  total_hours decimal(4,2)
+  is_default boolean [default: false]
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+  }
+}
+
+Table work_schedules {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  work_date date [not null]
+  shift_id bigint [not null]
+  actual_start_time datetime
+  actual_end_time datetime
+  total_hours decimal(4,2)
+  overtime_hours decimal(4,2)
+  status enum('scheduled','present','absent','late','half_day')
+  note varchar(255)
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    (employee_id, work_date) [unique]
+    work_date
+    shift_id
+  }
+}
+
+Table attendance_records {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  record_date date [not null]
+  check_in_time datetime
+  check_out_time datetime
+  total_work_hours decimal(4,2)
+  late_minutes smallint
+  early_leave_minutes smallint
+  overtime_hours decimal(4,2)
+  status enum('present','absent','late','half_day','holiday')
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    (employee_id, record_date) [unique]
+    record_date
+  }
+}
+
+Table salary_components {
+  id bigint [primary key, increment]
+  code varchar(20) [not null, unique]
+  name varchar(150) [not null]
+  type enum('earning','deduction')
+  category enum('basic','allowance','bonus','tax','insurance','other')
+  is_taxable boolean [default: true]
+  is_active boolean [default: true]
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    code [unique]
+  }
+}
+
+Table employee_salaries {
+  id bigint [primary key, increment]
+  employee_id bigint [not null]
+  salary_component_id bigint [not null]
+  amount decimal(12,2) [not null]
+  effective_date date [not null]
+  end_date date
+  created_at timestamp
+  updated_at timestamp
+  
+  indexes {
+    employee_id
+    salary_component_id
+    effective_date
+  }
+}
+
+Table activity_logs {
+  id bigint [primary key, increment]
+  table_name varchar(100) [not null]
+  record_id bigint [not null]
+  action enum('create','update','delete','view') [not null]
+  by_user_id bigint
+  at datetime [default: `now()`]
+  old_values json
+  new_values json
+  ip_address varchar(45)
+  user_agent varchar(255)
+  
+  indexes {
+    (table_name, record_id)
+    by_user_id
+    at
+  }
+}
+
+// Foreign key relationships
+Ref: users.role_id > roles.id [delete: restrict, update: cascade]
+
+Ref: departments.manager_id > employees.id [delete: set null, update: cascade]
+Ref: departments.parent_id > departments.id [delete: set null, update: cascade]
+
+Ref: job_titles.job_family_id > job_families.id [delete: set null, update: cascade]
+
+Ref: employees.user_id > users.id [delete: set null, update: cascade]
+
+Ref: employment_histories.employee_id > employees.id [delete: cascade, update: cascade]
+Ref: employment_histories.department_id > departments.id [delete: restrict, update: cascade]
+Ref: employment_histories.job_title_id > job_titles.id [delete: restrict, update: cascade]
+Ref: employment_histories.report_to > employees.id [delete: set null, update: cascade]
+
+Ref: leave_balances.employee_id > employees.id [delete: cascade, update: cascade]
+Ref: leave_balances.leave_type_id > leave_types.id [delete: restrict, update: cascade]
+
+Ref: leave_requests.employee_id > employees.id [delete: cascade, update: cascade]
+Ref: leave_requests.leave_type_id > leave_types.id [delete: restrict, update: cascade]
+Ref: leave_requests.approved_by > users.id [delete: set null, update: cascade]
+
+Ref: work_schedules.employee_id > employees.id [delete: cascade, update: cascade]
+Ref: work_schedules.shift_id > work_shifts.id [delete: restrict, update: cascade]
+
+Ref: attendance_records.employee_id > employees.id [delete: cascade, update: cascade]
+
+Ref: employee_salaries.employee_id > employees.id [delete: cascade, update: cascade]
+Ref: employee_salaries.salary_component_id > salary_components.id [delete: restrict, update: cascade]
+
+Ref: activity_logs.by_user_id > users.id [delete: set null, update: cascade]
