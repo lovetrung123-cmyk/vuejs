@@ -1,0 +1,5 @@
+/* Additional styles for Dashboard desktop view */
+.breadcrumb-separator {
+    color: var(--muted-foreground);
+    margin: 0 4px;
+}

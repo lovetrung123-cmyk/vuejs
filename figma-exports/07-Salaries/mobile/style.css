@@ -1,0 +1,14 @@
+/* Mobile specific styles */
+@media (max-width: 640px) {
+    .page-title {
+        font-size: 24px !important;
+    }
+    
+    .page-content {
+        padding: 16px !important;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+}
