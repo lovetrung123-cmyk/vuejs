@@ -1,4 +1,3 @@
-
 import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, integer, timestamp, boolean, decimal, date, pgEnum } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
@@ -27,7 +26,7 @@ export const roles = pgTable("roles", {
   code: varchar("code", { length: 50 }).notNull().unique(),
   name: varchar("name", { length: 100 }).notNull(),
   description: text("description"),
-  permissions: text("permissions"), // JSON string
+  permissions: text("permissions"),
   is_active: boolean("is_active").default(true),
   created_at: timestamp("created_at").defaultNow(),
   updated_at: timestamp("updated_at").defaultNow(),
@@ -123,7 +122,7 @@ export const leaveRequests = pgTable("leave_requests", {
 export const salaries = pgTable("salaries", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   employee_id: integer("employee_id").notNull().references(() => employees.id),
-  month: varchar("month", { length: 7 }).notNull(), // YYYY-MM format
+  month: varchar("month", { length: 7 }).notNull(),
   base_salary: decimal("base_salary", { precision: 15, scale: 2 }).notNull(),
   allowances: decimal("allowances", { precision: 15, scale: 2 }).default('0'),
   bonuses: decimal("bonuses", { precision: 15, scale: 2 }).default('0'),
@@ -146,14 +145,7 @@ export const insertSalarySchema = createInsertSchema(salaries).omit({ id: true, 
 export const insertJobTitleSchema = createInsertSchema(jobTitles).omit({ id: true, created_at: true, updated_at: true });
 export const insertJobFamilySchema = createInsertSchema(jobFamilies).omit({ id: true, created_at: true, updated_at: true });
 
-// Types
-export type User = typeof users.$inferSelect;
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type Role = typeof roles.$inferSelect;
-export type Department = typeof departments.$inferSelect;
-export type Employee = typeof employees.$inferSelect;
-export type Attendance = typeof attendance.$inferSelect;
-export type LeaveRequest = typeof leaveRequests.$inferSelect;
-export type Salary = typeof salaries.$inferSelect;
-export type JobTitle = typeof jobTitles.$inferSelect;
-export type JobFamily = typeof jobFamilies.$inferSelect;
+// Types (commented out since they're TypeScript constructs)
+// export type User = typeof users.$inferSelect;
+// export type InsertUser = z.infer<typeof insertUserSchema>;
+// ... etc

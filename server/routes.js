@@ -1,12 +1,10 @@
-
-import type { Express } from "express";
 import { createServer } from "http";
-import { db } from "./storage";
-import * as schema from "@shared/schema";
+import { db } from "./storage.js";
+import * as schema from "../shared/schema.js";
 import { eq, and, gte, lte, desc, sql } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
-export function registerRoutes(app: Express) {
+export function registerRoutes(app) {
   
   // ========== AUTH ROUTES ==========
   app.post("/api/auth/login", async (req, res) => {
@@ -26,14 +24,14 @@ export function registerRoutes(app: Express) {
       const [role] = await db
         .select()
         .from(schema.roles)
-        .where(eq(schema.roles.id, user.role_id!))
+        .where(eq(schema.roles.id, user.role_id))
         .limit(1);
 
       res.json({ 
         user: { ...user, password: undefined },
         role 
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -59,7 +57,7 @@ export function registerRoutes(app: Express) {
         .orderBy(desc(schema.employees.created_at));
 
       res.json(employees);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -77,7 +75,7 @@ export function registerRoutes(app: Express) {
       }
 
       res.json(employee);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -86,7 +84,7 @@ export function registerRoutes(app: Express) {
     try {
       const [employee] = await db.insert(schema.employees).values(req.body).returning();
       res.json(employee);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -100,7 +98,7 @@ export function registerRoutes(app: Express) {
         .returning();
 
       res.json(employee);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -109,7 +107,7 @@ export function registerRoutes(app: Express) {
     try {
       await db.delete(schema.employees).where(eq(schema.employees.id, parseInt(req.params.id)));
       res.json({ success: true });
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -119,7 +117,7 @@ export function registerRoutes(app: Express) {
     try {
       const departments = await db.select().from(schema.departments).orderBy(schema.departments.name);
       res.json(departments);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -128,7 +126,7 @@ export function registerRoutes(app: Express) {
     try {
       const [department] = await db.insert(schema.departments).values(req.body).returning();
       res.json(department);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -142,7 +140,7 @@ export function registerRoutes(app: Express) {
         .returning();
 
       res.json(department);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -151,7 +149,7 @@ export function registerRoutes(app: Express) {
     try {
       await db.delete(schema.departments).where(eq(schema.departments.id, parseInt(req.params.id)));
       res.json({ success: true });
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -161,7 +159,7 @@ export function registerRoutes(app: Express) {
     try {
       const roles = await db.select().from(schema.roles).orderBy(schema.roles.name);
       res.json(roles);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -170,7 +168,7 @@ export function registerRoutes(app: Express) {
     try {
       const [role] = await db.insert(schema.roles).values(req.body).returning();
       res.json(role);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -184,7 +182,7 @@ export function registerRoutes(app: Express) {
         .returning();
 
       res.json(role);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -193,7 +191,7 @@ export function registerRoutes(app: Express) {
     try {
       await db.delete(schema.roles).where(eq(schema.roles.id, parseInt(req.params.id)));
       res.json({ success: true });
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -203,7 +201,7 @@ export function registerRoutes(app: Express) {
     try {
       const jobTitles = await db.select().from(schema.jobTitles).orderBy(schema.jobTitles.name);
       res.json(jobTitles);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -212,7 +210,7 @@ export function registerRoutes(app: Express) {
     try {
       const [jobTitle] = await db.insert(schema.jobTitles).values(req.body).returning();
       res.json(jobTitle);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -239,19 +237,19 @@ export function registerRoutes(app: Express) {
       if (start_date && end_date) {
         query = query.where(
           and(
-            gte(schema.attendance.attendance_date, start_date as string),
-            lte(schema.attendance.attendance_date, end_date as string)
+            gte(schema.attendance.attendance_date, start_date),
+            lte(schema.attendance.attendance_date, end_date)
           )
         );
       }
 
       if (employee_id) {
-        query = query.where(eq(schema.attendance.employee_id, parseInt(employee_id as string)));
+        query = query.where(eq(schema.attendance.employee_id, parseInt(employee_id)));
       }
 
       const records = await query.orderBy(desc(schema.attendance.attendance_date));
       res.json(records);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -284,7 +282,7 @@ export function registerRoutes(app: Express) {
       }).returning();
 
       res.json(record);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -310,7 +308,7 @@ export function registerRoutes(app: Express) {
       }
 
       res.json(record);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -337,12 +335,12 @@ export function registerRoutes(app: Express) {
         .leftJoin(schema.employees, eq(schema.leaveRequests.employee_id, schema.employees.id));
 
       if (employee_id) {
-        query = query.where(eq(schema.leaveRequests.employee_id, parseInt(employee_id as string)));
+        query = query.where(eq(schema.leaveRequests.employee_id, parseInt(employee_id)));
       }
 
       const requests = await query.orderBy(desc(schema.leaveRequests.created_at));
       res.json(requests);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -351,7 +349,7 @@ export function registerRoutes(app: Express) {
     try {
       const [leave] = await db.insert(schema.leaveRequests).values(req.body).returning();
       res.json(leave);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -371,7 +369,7 @@ export function registerRoutes(app: Express) {
         .returning();
 
       res.json(leave);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -391,7 +389,7 @@ export function registerRoutes(app: Express) {
         .returning();
 
       res.json(leave);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -419,16 +417,16 @@ export function registerRoutes(app: Express) {
         .leftJoin(schema.employees, eq(schema.salaries.employee_id, schema.employees.id));
 
       if (month) {
-        query = query.where(eq(schema.salaries.month, month as string));
+        query = query.where(eq(schema.salaries.month, month));
       }
 
       if (employee_id) {
-        query = query.where(eq(schema.salaries.employee_id, parseInt(employee_id as string)));
+        query = query.where(eq(schema.salaries.employee_id, parseInt(employee_id)));
       }
 
       const salaries = await query.orderBy(desc(schema.salaries.month));
       res.json(salaries);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -437,7 +435,7 @@ export function registerRoutes(app: Express) {
     try {
       const [salary] = await db.insert(schema.salaries).values(req.body).returning();
       res.json(salary);
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
@@ -448,17 +446,17 @@ export function registerRoutes(app: Express) {
       const today = new Date().toISOString().split('T')[0];
 
       const [totalEmployees] = await db
-        .select({ count: sql<number>`count(*)::int` })
+        .select({ count: sql`count(*)::int` })
         .from(schema.employees)
         .where(eq(schema.employees.is_active, true));
 
       const [totalDepartments] = await db
-        .select({ count: sql<number>`count(*)::int` })
+        .select({ count: sql`count(*)::int` })
         .from(schema.departments)
         .where(eq(schema.departments.is_active, true));
 
       const [presentToday] = await db
-        .select({ count: sql<number>`count(*)::int` })
+        .select({ count: sql`count(*)::int` })
         .from(schema.attendance)
         .where(
           and(
@@ -468,7 +466,7 @@ export function registerRoutes(app: Express) {
         );
 
       const [onLeave] = await db
-        .select({ count: sql<number>`count(*)::int` })
+        .select({ count: sql`count(*)::int` })
         .from(schema.leaveRequests)
         .where(
           and(
@@ -484,7 +482,7 @@ export function registerRoutes(app: Express) {
         presentToday: presentToday.count || 0,
         onLeave: onLeave.count || 0
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(500).json({ error: error.message });
     }
   });
