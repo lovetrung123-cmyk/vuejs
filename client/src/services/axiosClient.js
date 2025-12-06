@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'http://devtapcode.io.vn/api',
+  baseURL: 'http://14.225.218.191:8000/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
