@@ -1,45 +1,40 @@
-import api from './api';
+
+import axiosClient from './axiosClient';
 
 export const departmentService = {
   // Get all departments
   getAll: async () => {
-    const response = await api.get('/departments');
-    return response.data;
-  },
-
-  // Get department tree (hierarchical)
-  getTree: async () => {
-    const response = await api.get('/departments/tree');
+    const response = await axiosClient.get('/departments');
     return response.data;
   },
 
   // Get department by ID
   getById: async (id) => {
-    const response = await api.get(`/departments/${id}`);
+    const response = await axiosClient.get(`/departments/${id}`);
     return response.data;
   },
 
   // Create new department
   create: async (data) => {
-    const response = await api.post('/departments', data);
+    const response = await axiosClient.post('/departments', {
+      code: data.code,
+      name: data.name,
+      manager_id: data.manager_id,
+      parent_id: data.parent_id,
+      is_active: data.is_active ?? 1
+    });
     return response.data;
   },
 
   // Update department
   update: async (id, data) => {
-    const response = await api.put(`/departments/${id}`, data);
+    const response = await axiosClient.patch(`/departments/${id}`, data);
     return response.data;
   },
 
   // Delete department
   delete: async (id) => {
-    const response = await api.delete(`/departments/${id}`);
-    return response.data;
-  },
-
-  // Get employees in department
-  getEmployees: async (id) => {
-    const response = await api.get(`/departments/${id}/employees`);
+    const response = await axiosClient.delete(`/departments/${id}`);
     return response.data;
   }
 };

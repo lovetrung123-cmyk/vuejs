@@ -1,47 +1,27 @@
-import api from './api';
+import axiosClient from './axiosClient';
 
 export const salaryService = {
-  // Get employee salary details
-  getEmployeeSalary: async (employee_id) => {
-    const response = await api.get(`/salaries/employee/${employee_id}`);
-    return response.data;
-  },
-
-  // Get all salaries
-  getAll: async (params) => {
-    const response = await api.get('/salaries', { params });
-    return response.data;
-  },
-
   // Get all salary components
   getComponents: async () => {
-    const response = await api.get('/salaries/components');
+    const response = await axiosClient.get('/salary-components');
     return response.data;
   },
 
-  // Create salary component for employee
-  createEmployeeSalary: async (data) => {
-    const response = await api.post('/salaries', data);
+  // Create salary component
+  createComponent: async (data) => {
+    const response = await axiosClient.post('/salary-components', data);
     return response.data;
   },
 
   // Update salary component
-  updateEmployeeSalary: async (id, data) => {
-    const response = await api.put(`/salaries/${id}`, data);
+  updateComponent: async (id, data) => {
+    const response = await axiosClient.patch(`/salary-components/${id}`, data);
     return response.data;
   },
 
   // Delete salary component
-  deleteEmployeeSalary: async (id) => {
-    const response = await api.delete(`/salaries/${id}`);
-    return response.data;
-  },
-
-  // Calculate total salary
-  calculateTotal: async (employee_id, date) => {
-    const response = await api.get(`/salaries/calculate/${employee_id}`, {
-      params: { date }
-    });
+  deleteComponent: async (id) => {
+    const response = await axiosClient.delete(`/salary-components/${id}`);
     return response.data;
   }
 };
