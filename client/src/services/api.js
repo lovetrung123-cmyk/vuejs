@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:8000/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -11,8 +11,8 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    // Add auth token if available
-    const token = localStorage.getItem('auth_token');
+    // Add auth token if available (compatible with backend JWT)
+    const token = localStorage.getItem('auth_token') || localStorage.getItem('TOKEN');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
